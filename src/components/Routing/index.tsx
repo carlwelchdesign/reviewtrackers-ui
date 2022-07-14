@@ -4,7 +4,6 @@ import {
   Route,
 } from "react-router-dom";
 import Home from '../Home'
-import ReviewList from "../ReviewList";
 
 const Routing = () => {
 return (
@@ -12,7 +11,6 @@ return (
         <Routes>
         <Route path="/" element={<Home />}>
             <Route index element={<Home />} />
-            <Route index element={<ReviewList />} />
         </Route>
         </Routes>
     </BrowserRouter>
