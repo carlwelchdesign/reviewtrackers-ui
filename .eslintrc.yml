@@ -1,7 +1,7 @@
 parser: '@typescript-eslint/parser'
 settings:
   react:
-    version: '16.13'
+    version: '18.0.0'
 env:
   browser: true
   jest: true
@@ -11,7 +11,6 @@ globals:
 plugins:
   - react-hooks
 extends:
-  - standard
   - 'plugin:react/recommended'
   - plugin:@typescript-eslint/recommended
   - plugin:jsx-a11y/recommended
@@ -33,6 +32,5 @@ rules:
   "@typescript-eslint/ban-ts-comment": 0 # preference
   'jsx-a11y/no-onchange': 0 # onBlur as alternative fails react proptype check
   'jsx-a11y/click-events-have-key-events': 0 # preference (not ready for key events)
-  'standard/computed-property-even-spacing': 0 # handled by prettier
   'import/no-duplicates': 0
   "no-use-before-define": "off"
