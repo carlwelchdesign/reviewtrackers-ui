@@ -1,0 +1,38 @@
+parser: '@typescript-eslint/parser'
+settings:
+  react:
+    version: '16.13'
+env:
+  browser: true
+  jest: true
+globals:
+  bugsnagClient: true
+  moment: true
+plugins:
+  - react-hooks
+extends:
+  - standard
+  - 'plugin:react/recommended'
+  - plugin:@typescript-eslint/recommended
+  - plugin:jsx-a11y/recommended
+  - prettier
+rules:
+  '@typescript-eslint/no-unused-vars': 2 # upgrade from default warn
+  'react-hooks/rules-of-hooks': 2 # hooks
+  'react-hooks/exhaustive-deps': 2 # hooks
+  '@typescript-eslint/prefer-interface': 0 # preference
+  '@typescript-eslint/array-type': 0 # preference
+  '@typescript-eslint/explicit-member-accessibility': 0 # preference (verbosity)
+  '@typescript-eslint/no-explicit-any': 0 # preference (convenience)
+  '@typescript-eslint/no-use-before-define': 0 # preference
+  '@typescript-eslint/explicit-function-return-type': 0 # preference (verbosity with react, also inference is useful part of TS)
+  "@typescript-eslint/explicit-module-boundary-types": 0     # preference (verbosity with react, also inference is useful part of TS)
+  '@typescript-eslint/no-var-requires': 0 # used in config files
+  "@typescript-eslint/no-empty-function": 0 # preference
+  "@typescript-eslint/ban-ts-ignore": 0 # preference
+  "@typescript-eslint/ban-ts-comment": 0 # preference
+  'jsx-a11y/no-onchange': 0 # onBlur as alternative fails react proptype check
+  'jsx-a11y/click-events-have-key-events': 0 # preference (not ready for key events)
+  'standard/computed-property-even-spacing': 0 # handled by prettier
+  'import/no-duplicates': 0
+  "no-use-before-define": "off"
