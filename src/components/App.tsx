@@ -1,6 +1,5 @@
-import React from 'react';
-import './App.css';
-import PageContainer from './PageContainer';
+import React from 'react'
+import PageContainer from './PageContainer'
 
 function App() {
   return (
