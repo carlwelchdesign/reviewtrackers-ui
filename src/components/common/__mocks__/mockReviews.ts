@@ -1,4 +1,6 @@
-export const mockReviewData = [
+import { ReviewDataType } from "../types/ReviewDataTypes";
+
+export const mockReviewData: ReviewDataType[] = [
   {
     "id": "5d707203b65083001e956f0a",
     "author": "Weeks Duran",

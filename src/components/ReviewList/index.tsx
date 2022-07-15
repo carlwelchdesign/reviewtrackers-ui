@@ -1,10 +1,16 @@
 import React from 'react'
+import ReviewCard from '../common/ReviewCard'
+import { ReviewDataType } from '../common/types/ReviewDataTypes'
 
+type Props = {
+  reviewList: ReviewDataType[]
+}
 
-const ReviewList = () => {
+const ReviewList = ({reviewList}: Props) => {
+
   return (
     <>
-    <div>Review List</div>
+    <div>{reviewList.map((review: ReviewDataType) => <ReviewCard key={review.id} {...{review}} />)}</div>
     </>
   )
 }

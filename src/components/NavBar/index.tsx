@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const NavBar = () => {
-
-    return (
-        <Header>
-          <Link to="details">Details</Link>
-        </Header>
-    )
+  return (
+    <Header>
+      <Link to="details">Details</Link>
+    </Header>
+  )
 }
 
 export default NavBar

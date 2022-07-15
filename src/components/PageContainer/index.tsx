@@ -13,16 +13,13 @@ const PageContainer = () => {
 export default PageContainer
 
 const ContentContainer = styled.div`
-  // overflow: hidden;
-  // padding-left: 0;
+  background-color: #7a8292;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  display: inline-grid;
+
   // display: flex;
-  // .contentContainer {
-  //   padding: 3px;
-  //   padding-left: 0;
-  //   flex: 1;
-  // }
-  // ol,
-  // ul {
-  //   list-style: revert;
-  // }
+  // align-items: center;
+  // justify-content: center;
 `
