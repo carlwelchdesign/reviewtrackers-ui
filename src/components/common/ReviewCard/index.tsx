@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { ReviewDataType } from '../types/ReviewDataTypes';
@@ -13,30 +12,28 @@ type Props = {
 }
 
 const ReviewCard = ({review}: Props) => {
-
+  const { place, rating, content, author, published_at } = review
   return (
-    <RTCard>
+    <CardContainer>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          {review.place}
+          {place}
         </Typography>
-          <StarRating {...{rating: review.rating}} />
-        <UserReviewContent variant="body2">
-          {review.content}
+          <StarRating {...{rating: rating}} />
+        <UserReviewContent  >
+          {content}
         </UserReviewContent>
       </CardContent>
-      <CardActions>
       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          {review.author} {day(review.published_at).format('DD/MM/YYYY')}
+          {author} {day(published_at).format('DD/MM/YYYY')}
         </Typography>
-      </CardActions>
-    </RTCard>
-  );
+    </CardContainer>
+  )
 }
 
 export default ReviewCard
 
-const RTCard = styled(Card)`
+const CardContainer = styled(Card)`
 border: 1px; 
 width: 192px;
 display: inline-block;

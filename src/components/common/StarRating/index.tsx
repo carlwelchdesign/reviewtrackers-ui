@@ -8,12 +8,11 @@ type Props = {
 
 const StarRating = ({rating}: Props) => {
 	return (
-	<>
-		{[...Array(rating)].map((star: any, index: number) =>        
-		<StarRateIcon key={index} sx={{ color: yellow[600] }} />
-
-      )}
-			</>
+		<>
+			{[...Array(rating)].map((star: any, index: number) =>        
+				<StarRateIcon key={index} sx={{ color: yellow[600] }} />
+			)}
+		</>
 	)
 }
 
