@@ -17,13 +17,13 @@ const ReviewCard = ({review}: Props) => {
       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
         {place}
       </Typography>
-        <StarRating {...{ rating: rating }} />
-      <UserReviewContent>
+      <StarRating {...{ rating }} />
+      <UserReviewContent sx={{ fontSize: 13 }} >
         {content}
       </UserReviewContent>
-      <UsernameAndDateContainer sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
-        <AuthorAndDateSubCantainer>{author} {day(published_at).format('DD/MM/YYYY')}</AuthorAndDateSubCantainer>
-      </UsernameAndDateContainer>
+      <UsernameAndDate sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
+        {author} {day(published_at).format('DD/MM/YYYY')}
+      </UsernameAndDate>
     </CardContainer>
   )
 }
@@ -32,9 +32,7 @@ export default ReviewCard
 
 const CardContainer = styled(Card)`
   border: 1px; 
-  width: 192px;
   display: inline-block;
-  max-width: 192px;
   height: 160px;
   margin: 32px 48px;
   padding: 13px;
@@ -48,10 +46,6 @@ const UserReviewContent = styled(Typography)`
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 `
-const UsernameAndDateContainer = styled(Typography)`
-  display: relative;
-`
-const AuthorAndDateSubCantainer = styled.div`
-  display: absolute !important;
-  bottom: 0px;
+const UsernameAndDate = styled(Typography)`
+
 `

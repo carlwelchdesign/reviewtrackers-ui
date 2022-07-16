@@ -14,7 +14,7 @@ export default NavBar
 
 const Header = styled.div`
   padding: 3px;
-  background-color: blue;
+  background-color: #0741a3;
   color: white;
   justify-content: space-between;
   align-items: center;

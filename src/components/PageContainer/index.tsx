@@ -14,12 +14,4 @@ export default PageContainer
 
 const ContentContainer = styled.div`
   background-color: #7a8292;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  display: inline-grid;
-
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
 `
