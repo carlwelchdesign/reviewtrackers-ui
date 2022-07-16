@@ -8,9 +8,7 @@ const Home = () => {
   const [reviewList, ] = useState<ReviewDataType[]>(mockReviewData)
 
   return (
-    <div>
-      <ReviewList {...{reviewList}} />
-    </div>
+    <ReviewList {...{reviewList}} />
   )
 }
 

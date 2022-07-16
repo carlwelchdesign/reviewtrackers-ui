@@ -14,16 +14,16 @@ const ReviewCard = ({review}: Props) => {
   const { place, rating, content, author, published_at } = review
   return (
     <CardContainer>
-      <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+      <Typography variant={'h6'}>
         {place}
       </Typography>
-        <StarRating {...{ rating: rating }} />
+      <StarRating {...{ rating: rating }} />
       <UserReviewContent>
         {content}
       </UserReviewContent>
-      <UsernameAndDateContainer sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
-        <AuthorAndDateSubCantainer>{author} {day(published_at).format('DD/MM/YYYY')}</AuthorAndDateSubCantainer>
-      </UsernameAndDateContainer>
+      <AuthorAndDateSubCantainer>
+        <UsernameAndDateContainer sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>{author} {day(published_at).format('DD/MM/YYYY')}</UsernameAndDateContainer>
+      </AuthorAndDateSubCantainer>
     </CardContainer>
   )
 }
@@ -50,8 +50,9 @@ const UserReviewContent = styled(Typography)`
 `
 const UsernameAndDateContainer = styled(Typography)`
   display: relative;
+  height: 100%;
 `
 const AuthorAndDateSubCantainer = styled.div`
-  display: absolute !important;
+  display: absolute;
   bottom: 0px;
 `
