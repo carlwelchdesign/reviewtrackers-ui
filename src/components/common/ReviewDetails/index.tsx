@@ -1,34 +1,49 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import { ReviewDataType } from '../types/ReviewDataTypes';
 import styled from 'styled-components';
 import StarRating from '../StarRating';
 import day from 'dayjs'
+import { fetchOneReview } from '../api';
+import { useParams } from 'react-router-dom';
 
-type Props = {
-  review: ReviewDataType
-}
+// type Props = {
+//   review: ReviewDataType
+// }
 
-const ReviewCard = ({review}: Props) => {
-  const { place, rating, content, author, published_at } = review
+const ReviewDetails = () => {
+  const { id } = useParams();
+  const [reviewDetail, setReviewDetail] = useState<ReviewDataType>()
+
+  useEffect(() => {
+    if (id) {
+    const fetchAndSetReviews = async () => {
+      const data = await fetchOneReview(id);
+      setReviewDetail(data);
+      //  setLoading(false);
+    }
+    fetchAndSetReviews();
+    }
+   }, [id]);
+
   return (
     <CardContainer>
       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        {place}
+        {reviewDetail?.place}
       </Typography>
-      <StarRating {...{ rating }} />
+      <StarRating {...{ rating: reviewDetail?.rating || 0 }} />
       <UserReviewContent sx={{ fontSize: 13 }} >
-        {content}
+        {reviewDetail?.content}
       </UserReviewContent>
       <UsernameAndDate sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
-        {author} {day(published_at).format('DD/MM/YYYY')}
+        {reviewDetail?.author} {day(reviewDetail?.published_at).format('DD/MM/YYYY')}
       </UsernameAndDate>
     </CardContainer>
   )
 }
 
-export default ReviewCard
+export default ReviewDetails
 
 const CardContainer = styled(Card)`
   border: 1px; 

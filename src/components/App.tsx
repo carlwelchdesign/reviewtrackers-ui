@@ -6,7 +6,8 @@ import {
 } from "react-router-dom";
 import styled from 'styled-components';
 import Home from '../components/Home'
-import NavBar from '../components/NavBar';
+import ReviewDetails from '../components/common/ReviewDetails'
+import NavBar from './common/NavBar';
 
 const App = () => {
 return (
@@ -15,7 +16,7 @@ return (
       <ContentContainer>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="details" element={<Home />} />
+          <Route path="/details/:id" element={<ReviewDetails />} />
         </Routes>
       </ContentContainer>
     </BrowserRouter>
@@ -26,4 +27,6 @@ export default App
 
 const ContentContainer = styled.div`
   background-color: #7a8292;
+  height: 100%;
+  min-height: 100vh;
 `

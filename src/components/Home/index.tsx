@@ -1,11 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReviewList from '../ReviewList'
-import { mockReviewData } from '../common/__mocks__/mockReviews'
 import { ReviewDataType } from '../common/types/ReviewDataTypes'
-
+import { fetchAllReviews } from '../common/api'
 
 const Home = () => {
-  const [reviewList, ] = useState<ReviewDataType[]>(mockReviewData)
+  const [reviewList, setReviewList] = useState<ReviewDataType[]>([])
+
+  useEffect(() => {
+    const fetchAndSetReviews = async () => {
+      const data = await fetchAllReviews();
+      setReviewList(data);
+      //  setLoading(false);
+    }
+    fetchAndSetReviews();
+   }, []);
 
   return (
     <ReviewList {...{reviewList}} />

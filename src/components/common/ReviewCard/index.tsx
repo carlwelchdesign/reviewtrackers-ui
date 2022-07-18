@@ -5,25 +5,28 @@ import { ReviewDataType } from '../types/ReviewDataTypes';
 import styled from 'styled-components';
 import StarRating from '../StarRating';
 import day from 'dayjs'
+import { Link } from 'react-router-dom';
 
 type Props = {
   review: ReviewDataType
 }
 
 const ReviewCard = ({review}: Props) => {
-  const { place, rating, content, author, published_at } = review
+  const { id, place, rating, content, author, published_at } = review
   return (
     <CardContainer>
-      <Typography variant={'h6'}>
-        {place}
-      </Typography>
-      <StarRating {...{ rating: rating }} />
-      <UserReviewContent>
-        {content}
-      </UserReviewContent>
-      <AuthorAndDateSubCantainer>
-        <UsernameAndDateContainer sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>{author} {day(published_at).format('DD/MM/YYYY')}</UsernameAndDateContainer>
-      </AuthorAndDateSubCantainer>
+      <Link to={`/details/${id}`}>
+        <Typography variant={'h6'}>
+          {place}
+        </Typography>
+        <StarRating {...{ rating: rating }} />
+        <UserReviewContent>
+          {content}
+        </UserReviewContent>
+        <AuthorAndDateSubCantainer>
+          <UsernameAndDateContainer sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>{author} {day(published_at).format('DD/MM/YYYY')}</UsernameAndDateContainer>
+        </AuthorAndDateSubCantainer>
+        </Link>
     </CardContainer>
   )
 }

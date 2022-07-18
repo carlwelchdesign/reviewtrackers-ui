@@ -1,11 +1,13 @@
+import Typography from '@mui/material/Typography'
 import React from 'react'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const NavBar = () => {
   return (
     <Header>
-      <Link to="details">Details</Link>
+      <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        Reviewtrackers
+      </Typography>
     </Header>
   )
 }
@@ -13,7 +15,7 @@ const NavBar = () => {
 export default NavBar
 
 const Header = styled.div`
-  padding: 3px;
+  padding: 3px 48px;
   background-color: #0741a3;
   color: white;
   justify-content: space-between;
