@@ -7,7 +7,6 @@ import { createMemoryHistory } from 'history';
 import fetchMock from 'fetch-mock'
 
 const mockId = '5d707203015653f16822ac2f'
-
 const mockDetailData = mockReviewData.filter(review=>{
   review.id === mockId
 })
