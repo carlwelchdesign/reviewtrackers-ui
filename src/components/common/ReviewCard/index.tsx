@@ -6,7 +6,7 @@ import day from 'dayjs'
 import { Link } from 'react-router-dom'
 import { Card, Typography } from '@mui/material'
 import { grey } from '@mui/material/colors'
-import { UserReviewContent, AuthorAndDateSubCantainer } from '../StyledComponents'
+import { UserReviewListContent, AuthorAndDateSubCantainer } from '../StyledComponents'
 // import ForumIcon from '@mui/icons-material/Forum'
 
 type Props = {
@@ -22,9 +22,9 @@ const ReviewCard = ({review}: Props) => {
           {place}
         </Typography>
         <StarRating {...{ rating: rating }} />
-        <UserReviewContent sx={{ fontSize: 13 }} color="text.secondary">
+        <UserReviewListContent sx={{ fontSize: 13 }} color="text.secondary">
           {content}
-        </UserReviewContent>
+        </UserReviewListContent>
         <AuthorAndDateSubCantainer>
           <Typography sx={{ fontSize: 10, textAlign: 'left', width: '50%'}} color="text.primary">{author} </Typography>
           <Typography sx={{ fontSize: 10, textAlign: 'right', width: '50%', color: grey[500] }} >{day(published_at).format('DD/MM/YYYY')}</Typography>

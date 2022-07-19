@@ -10,7 +10,7 @@ export const CardContainer = styled(Card)`
   margin: 32px 48px;
   padding: 13px;
 `
-export const UserReviewContent = styled(Typography)`
+export const UserReviewListContent = styled(Typography)`
   padding-top: 7px;
   white-space: wrap;
   overflow: hidden;
@@ -24,4 +24,16 @@ export const AuthorAndDateSubCantainer = styled.div`
   display: inline-flex;
   position: absolute;
   bottom: 0;
+`
+export const AuthorDateContainer = styled.div`
+  display: flex;
+  align-items: flex-end;
+  width: inherit;
+  margin-bottom: auto;
+  position: absolute !important;
+  left: 80px;
+  bottom: 12px;
+`
+export const UserReviewContent = styled(Typography)`
+  padding: 7px 0 30px; 
 `

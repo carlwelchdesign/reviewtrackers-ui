@@ -38,20 +38,49 @@ export const postReviewComment = async (data: CommentFormDataTypes) => {
 	const url = apiPath + 'review/comment/'
 	try {
     const config = {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
+      method: 'POST',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
     }
     const response = await fetch(url, config)
-    //const json = await response.json()
     if (response.ok) {
-        //return json
-        return response
+      return response
     }
 		return await response.json()
+	} catch (err) {
+		console.log('error', err)
+	}
+}
+
+export const updateReviewComment = async (data: CommentFormDataTypes) => {
+	const url = apiPath + 'review/comment/'
+	try {
+    const config = {
+      method: 'PUT',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    }
+    const response = await fetch(url, config)
+    if (response.ok) {
+      return response
+    }
+		return await response.json()
+	} catch (err) {
+		console.log('error', err)
+	}
+}
+
+export const deleteReviewComment = async (id: string) => {
+	await fetch(apiPath + `review/comment/${id}`, {
+		method: 'DELETE',
+	})
+	try {
 	} catch (err) {
 		console.log('error', err)
 	}
