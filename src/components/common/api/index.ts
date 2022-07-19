@@ -56,7 +56,7 @@ export const postReviewComment = async (data: CommentFormDataTypes) => {
 }
 
 export const updateReviewComment = async (data: CommentFormDataTypes) => {
-	const url = apiPath + 'review/comment/'
+	const url = apiPath + `review/comment/${data.id}`
 	try {
     const config = {
       method: 'PUT',

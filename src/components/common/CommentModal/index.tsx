@@ -1,22 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Box, Modal, Typography, TextField, Button } from '@mui/material'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import { CommentFormDataTypes } from '../types/ReviewDataTypes'
-import { postReviewComment } from '../api'
 
 type Props = {
-  handleModal: any
+  handleModal: () => void
   modalOpen: boolean
-  id: string
+  onCommentSubmit: (data: CommentFormDataTypes) => Promise<void>
+  onUpdateComment: (data: CommentFormDataTypes) => Promise<void>
+  reviewComment: CommentFormDataTypes | undefined
 }
 
-const ContentModal = ({handleModal, modalOpen, id }: Props) => {
-  const { register, handleSubmit, reset } = useForm({defaultValues: {author: '', comment: ''}})
-  const onSubmit = async (data: CommentFormDataTypes) => {
-    await postReviewComment({...{...data, review_id: id}})
-    reset({author: '', comment: ''})
-    handleModal()
+const ContentModal = ({handleModal, modalOpen, onCommentSubmit, onUpdateComment, reviewComment }: Props) => {
+  console.log({reviewComment})
+  const { register, handleSubmit, reset } = useForm({defaultValues: {author: reviewComment?.author, comment: reviewComment?.comment}})
+  
+  useEffect(() => {
+    reset({author: reviewComment?.author || '', comment: reviewComment?.comment || ''})
+  }, [reset, reviewComment?.author, reviewComment?.comment])
+
+
+  const onSubmit = (data: CommentFormDataTypes) => {
+    !!reviewComment ? onUpdateComment(data) : onCommentSubmit(data)
   }
 
   return (

@@ -19,6 +19,7 @@ const CommentMenu = ({handleCommentMenu}: Props) => {
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setCurrentMenuItem(event.currentTarget)
   }
+  
   const handleSelect = (event: React.MouseEvent<HTMLElement>) => {
     handleCommentMenu(event.currentTarget.outerText)
   }

@@ -3,7 +3,7 @@ import { Card, IconButton, Typography } from '@mui/material'
 import { CommentFormDataTypes, ReviewDataType } from '../common/types/ReviewDataTypes'
 import StarRating from '../common/StarRating'
 import day from 'dayjs'
-import { deleteReviewComment, fetchOneReview, fetchReviewComment } from '../common/api'
+import { deleteReviewComment, fetchOneReview, fetchReviewComment, postReviewComment, updateReviewComment } from '../common/api'
 import { Link, useParams } from 'react-router-dom'
 import grey from '@mui/material/colors/grey'
 import styled from 'styled-components'
@@ -25,7 +25,6 @@ const ReviewDetails = () => {
       const fetchReview = async () => {
         const data = await fetchOneReview(id)
         setReviewDetail(data)
-        // setLoading(false)
       }
     fetchReview()
     }
@@ -36,21 +35,45 @@ const ReviewDetails = () => {
       const fetchComment = async () => {
         const data = await fetchReviewComment(id)
         setReviewComment(data)
-        // setLoading(false)
       }
     fetchComment()
     }
    }, [id, modalOpen])
 
-    const handeleCommentDelete = async (id: string) => {
-      await deleteReviewComment(id)
-      setReviewComment(undefined)
+  const handeleCommentDelete = async (id: string) => {
+    await deleteReviewComment(id)
+    setReviewComment(undefined)
+  }
+
+  const onCommentSubmit = async (data: CommentFormDataTypes) => {
+    const formattedData = {...{...data, review_id: id}}
+    await postReviewComment(formattedData)
+    setReviewComment(formattedData)
+    handleModal()
+  }
+
+  const handeleCommentSubmit = () => {
+    handleModal()
+  }
+
+  const handeleCommentUpdate = () => {
+    handleModal()
+  }
+
+  const onUpdateComment = async (data: CommentFormDataTypes) => {
+    if(reviewComment) {
+      await updateReviewComment({...{...data, review_id: id, id: reviewComment.id}})
+      setReviewComment(data)
+      handleModal()
     }
+  }
+
+  
 
   const handleModal = () => {
     setModalOpen(!modalOpen)
   }
-  console.log({reviewComment})
+
   return (
     <>
       <LinkWrapper to={`/`}>
@@ -68,12 +91,12 @@ const ReviewDetails = () => {
           <Typography sx={{ fontSize: 10, textAlign: 'left', marginRight: '40px' }} color="text.primary">{reviewDetail?.author}</Typography>
           <Typography sx={{ fontSize: 10, textAlign: 'right', color: grey[500] }}>{day(reviewDetail?.published_at).format('DD/MM/YYYY')}</Typography>
         </AuthorDateContainer>
-        {!reviewComment && <AddCommentButton color="primary" aria-label="Add Comment" onClick={handleModal}>
+        {!reviewComment && <AddCommentButton color="primary" aria-label="Add Comment" onClick={handeleCommentSubmit}>
           <InsertCommentIcon sx={{ fontSize: 16, color: grey[800]}}/>
         </AddCommentButton>}
       </ReviewCardDetailContainer>
-     {reviewComment && <CommentCard {...{...reviewComment, handeleCommentDelete }}/>}
-      {id && <ContentModal {...{ handleModal, modalOpen, id, setReviewComment }}/>}
+     {reviewComment && <CommentCard {...{...reviewComment, handeleCommentDelete, handeleCommentUpdate }}/>}
+      {id && <ContentModal {...{ handleModal, modalOpen, onCommentSubmit, onUpdateComment, reviewComment }}/>}
     </>
   )
 }
