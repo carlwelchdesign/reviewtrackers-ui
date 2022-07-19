@@ -11,15 +11,15 @@ import NavBar from './common/NavBar';
 
 const App = () => {
 return (
-    <BrowserRouter>
-      <NavBar />
-      <ContentContainer>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/details/:id" element={<ReviewDetails />} />
-        </Routes>
-      </ContentContainer>
-    </BrowserRouter>
+    <ContentContainer>
+      <BrowserRouter>
+        <NavBar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/details/:id" element={<ReviewDetails />} />
+          </Routes>
+      </BrowserRouter>
+    </ContentContainer>
   )
 }
 

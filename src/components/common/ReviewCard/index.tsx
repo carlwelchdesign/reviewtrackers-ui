@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { Card, Typography } from '@mui/material'
 import { grey } from '@mui/material/colors'
 import { UserReviewContent, AuthorAndDateSubCantainer } from '../StyledComponents'
+// import ForumIcon from '@mui/icons-material/Forum'
 
 type Props = {
   review: ReviewDataType
@@ -21,7 +22,7 @@ const ReviewCard = ({review}: Props) => {
           {place}
         </Typography>
         <StarRating {...{ rating: rating }} />
-        <UserReviewContent sx={{ fontSize: 14}} color="text.secondary">
+        <UserReviewContent sx={{ fontSize: 13 }} color="text.secondary">
           {content}
         </UserReviewContent>
         <AuthorAndDateSubCantainer>
