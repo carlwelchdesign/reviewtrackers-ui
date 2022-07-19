@@ -8,9 +8,18 @@ import { useParams } from 'react-router-dom'
 import grey from '@mui/material/colors/grey'
 import styled from 'styled-components'
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
+import { useForm } from 'react-hook-form'
+
+type CommentFormDataTypes = {
+  author?: string
+  comment?: string
+}
 
 const ReviewDetails = () => {
   const { id } = useParams()
+  const { register, handleSubmit } = useForm()
+  const onSubmit = (data: CommentFormDataTypes) => console.log(data)
+
   const [reviewDetail, setReviewDetail] = useState<ReviewDataType>()
   const [openModal, setOpenModal] = useState<boolean>(false)
 
@@ -39,39 +48,37 @@ const ReviewDetails = () => {
         <UserReviewContent sx={{ fontSize: 13}} color="text.secondary">
           {reviewDetail?.content}
         </UserReviewContent>
-        <AuthorAndDateSubCantainer>
+        <AuthorDateContainer>
           <Typography sx={{ fontSize: 10, textAlign: 'left', marginRight: '40px' }} color="text.primary">{reviewDetail?.author}</Typography>
           <Typography sx={{ fontSize: 10, textAlign: 'right', color: grey[500] }}>{day(reviewDetail?.published_at).format('DD/MM/YYYY')}</Typography>
-        </AuthorAndDateSubCantainer>
+        </AuthorDateContainer>
         <AddCommentButton color="primary" aria-label="Add Comment" onClick={handleModal}>
           <InsertCommentIcon sx={{ fontSize: 16, color: grey[800]}}/>
         </AddCommentButton>
       </CardContainer>
       <Modal
         open={openModal}
-        onClose={handleModal}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
+        onClose={handleModal}>
         <ModalContentContainer>
           <Typography id="modal-modal-title" variant="h6" sx={{ fontWeight: 800 }}>
             Add a comment
-          </Typography>                                                     
-          <CommentTextField
-            id="outlined-multiline-flexible"
-            label="Enter your name"
-            // value={'value'}
-            // onChange={handleChange}
-          />
-          <CommentTextField
-            id="outlined-multiline-static"
-            label="Leave a comment"
-            multiline
-            rows={4}
-          />
-          <ButtonContainer>
-          <CommentButton variant="outlined" onClick={handleModal}>Cancel</CommentButton>
-          <CommentButton variant="contained">Submit</CommentButton>
-          </ButtonContainer>
+          </Typography>     
+          <form onSubmit={handleSubmit(onSubmit)}>                                       
+            <CommentTextField
+              label="Enter your name"
+              {...register("author")} 
+            />
+            <CommentTextField
+              label="Leave a comment"
+              {...register("comment")} 
+              multiline
+              rows={4}
+            />
+            <ButtonContainer>
+              <CommentButton variant="contained" type="submit">Submit</CommentButton>
+              <CommentButton variant="outlined" onClick={handleModal}>Cancel</CommentButton>
+            </ButtonContainer>
+          </form>
         </ModalContentContainer>
       </Modal>
       </>
@@ -82,20 +89,24 @@ export default ReviewDetails
 
 const CardContainer = styled(Card)`
   border: 1px; 
-  display: inline-block;
+  display: flex;
   min-height: 160px;
   margin: 32px 48px;
   padding: 13px 80px;
   position: relative;
+  flex-direction: column;
 `
 export const UserReviewContent = styled(Typography)`
-  padding-top: 7px; 
+  padding: 7px 0 30px; 
 `
-const AuthorAndDateSubCantainer = styled.div`
-  display: inline-flex;
-  position: absolute;
-  bottom: 13px;
+const AuthorDateContainer = styled.div`
+  display: flex;
+  align-items: flex-end;
   width: inherit;
+  margin-bottom: auto;
+  position: absolute !important;
+  left: 80px;
+  bottom: 12px;
 `
 const AddCommentButton = styled(IconButton)`
   position: absolute !important;
@@ -119,10 +130,9 @@ const CommentTextField = styled(TextField)`
   align-self: 
 `
 const ButtonContainer = styled.div`
-  align-items: flex-end;
+  display: flex;
+  flex-direction: row-reverse;
   margin-top: 24px;
-  width: auto;
-  align-self: flex-end;
 `
 const CommentButton = styled(Button)`
   margin-left: 10px !important;
