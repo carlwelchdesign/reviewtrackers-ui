@@ -5,8 +5,8 @@ import {
   Route,
 } from "react-router-dom";
 import styled from 'styled-components';
-import Home from '../components/Home'
-import ReviewDetails from '../components/common/ReviewDetails'
+import ReviewList from '../components/ReviewList'
+import ReviewDetails from './ReviewDetails'
 import NavBar from './common/NavBar';
 
 const App = () => {
@@ -15,7 +15,7 @@ return (
       <BrowserRouter>
         <NavBar />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<ReviewList />} />
             <Route path="/details/:id" element={<ReviewDetails />} />
           </Routes>
       </BrowserRouter>

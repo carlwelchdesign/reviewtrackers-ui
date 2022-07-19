@@ -1,17 +1,26 @@
-import React from 'react'
-import styled from 'styled-components'
-import ReviewCard from '../common/ReviewCard'
+import React, { useEffect, useState } from 'react'
 import { ReviewDataType } from '../common/types/ReviewDataTypes'
+import ReviewCard from '../common/ReviewCard'
+import { fetchAllReviews } from '../common/api'
+import styled from 'styled-components'
 
-type Props = {
-  reviewList: ReviewDataType[]
+const ReviewList = () => {
+  const [reviewList, setReviewList] = useState<ReviewDataType[]>([])
+
+  useEffect(() => {
+    const fetchAndSetReviews = async () => {
+      const data = await fetchAllReviews();
+      setReviewList(data);
+      //  setLoading(false);
+    }
+    fetchAndSetReviews();
+   }, []);
+
+  return (
+    <ListContainer>{reviewList.map((review: ReviewDataType) => <ReviewCard key={review.id} {...{review}} />)}</ListContainer>
+  )
 }
-
-const ReviewList = ({reviewList}: Props) => (
-  <ListContainer>{reviewList.map((review: ReviewDataType) => <ReviewCard key={review.id} {...{review}} />)}</ListContainer>
-)
 
 export default ReviewList
 
-const ListContainer = styled.div`
-`
+const ListContainer = styled.div``

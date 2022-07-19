@@ -1,36 +1,47 @@
 import React, { useState, useEffect } from 'react'
 import { Box, Card, IconButton, Modal, Typography, TextField, Button } from '@mui/material'
-import { ReviewDataType } from '../types/ReviewDataTypes'
-import StarRating from '../StarRating'
+import { CommentFormDataTypes, ReviewDataType } from '../common/types/ReviewDataTypes'
+import StarRating from '../common/StarRating'
 import day from 'dayjs'
-import { fetchOneReview } from '../api'
+import { fetchOneReview, fetchReviewComment, postReviewComment } from '../common/api'
 import { useParams } from 'react-router-dom'
 import grey from '@mui/material/colors/grey'
 import styled from 'styled-components'
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import { useForm } from 'react-hook-form'
 
-type CommentFormDataTypes = {
-  author?: string
-  comment?: string
-}
-
 const ReviewDetails = () => {
   const { id } = useParams()
   const { register, handleSubmit } = useForm()
-  const onSubmit = (data: CommentFormDataTypes) => console.log(data)
+  const onSubmit = (data: CommentFormDataTypes) => {
+    postReviewComment({...{...data, review_id: id}})
+    handleModal()
+  }
 
   const [reviewDetail, setReviewDetail] = useState<ReviewDataType>()
+  const [reviewComment, setReviewComment] = useState<CommentFormDataTypes>()
   const [openModal, setOpenModal] = useState<boolean>(false)
 
   useEffect(() => {
     if (id) {
-      const fetchAndSetReviews = async () => {
+      const fetchReview = async () => {
         const data = await fetchOneReview(id)
         setReviewDetail(data)
         // setLoading(false)
       }
-    fetchAndSetReviews()
+    fetchReview()
+    }
+   }, [id])
+
+   useEffect(() => {
+    if (id) {
+      const fetchComment = async () => {
+        const data = await fetchReviewComment(id)
+        setReviewComment(data)
+        console.log(data)
+        // setLoading(false)
+      }
+    fetchComment()
     }
    }, [id])
 
@@ -40,7 +51,7 @@ const ReviewDetails = () => {
 
   return (
     <>
-      <CardContainer>
+      <ReviewCardDetailContainer>
         <Typography variant={'h6'} sx={{ fontSize: 16, fontWeight: 600 }} color="text.primary">
           {reviewDetail?.place}
         </Typography>
@@ -55,7 +66,16 @@ const ReviewDetails = () => {
         <AddCommentButton color="primary" aria-label="Add Comment" onClick={handleModal}>
           <InsertCommentIcon sx={{ fontSize: 16, color: grey[800]}}/>
         </AddCommentButton>
-      </CardContainer>
+      </ReviewCardDetailContainer>
+     {reviewComment && ( <CommentCardContainer>
+        <UserReviewContent sx={{ fontSize: 13}} color="text.secondary">
+          {reviewComment?.comment}
+        </UserReviewContent>
+        <AuthorDateContainer>
+          <Typography sx={{ fontSize: 10, textAlign: 'left', marginRight: '40px' }} color="text.primary">{reviewComment?.author}</Typography>
+          <Typography sx={{ fontSize: 10, textAlign: 'right', color: grey[500] }}>{day(reviewComment?.updatedAt).format('DD/MM/YYYY')}</Typography>
+        </AuthorDateContainer>
+      </CommentCardContainer>)}
       <Modal
         open={openModal}
         onClose={handleModal}>
@@ -87,10 +107,19 @@ const ReviewDetails = () => {
 
 export default ReviewDetails
 
-const CardContainer = styled(Card)`
+const ReviewCardDetailContainer = styled(Card)`
   border: 1px; 
   display: flex;
   min-height: 160px;
+  margin: 32px 48px;
+  padding: 13px 80px;
+  position: relative;
+  flex-direction: column;
+`
+const CommentCardContainer = styled(Card)`
+  border: 1px; 
+  display: flex;
+  min-height: 80px;
   margin: 32px 48px;
   padding: 13px 80px;
   position: relative;
