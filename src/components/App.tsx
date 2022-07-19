@@ -1,24 +1,21 @@
 import React from 'react'
 import {
-  BrowserRouter,
   Routes,
   Route,
-} from "react-router-dom";
+} from "react-router-dom"
 import styled from 'styled-components';
 import ReviewList from '../components/ReviewList'
 import ReviewDetails from './ReviewDetails'
-import NavBar from './common/NavBar';
+import NavBar from './common/NavBar'
 
 const App = () => {
 return (
     <ContentContainer>
-      <BrowserRouter>
-        <NavBar />
-          <Routes>
-            <Route path="/" element={<ReviewList />} />
-            <Route path="/details/:id" element={<ReviewDetails />} />
-          </Routes>
-      </BrowserRouter>
+      <NavBar />
+        <Routes>
+          <Route path="/" element={<ReviewList />} />
+          <Route path="/details/:id" element={<ReviewDetails />} />
+        </Routes>
     </ContentContainer>
   )
 }
@@ -29,5 +26,4 @@ const ContentContainer = styled.div`
   background-color: #7a8292;
   height: 100%;
   min-height: 100vh;
-  margin: 0 auto;
 `

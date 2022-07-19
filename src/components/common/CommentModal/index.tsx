@@ -13,12 +13,11 @@ type Props = {
 }
 
 const ContentModal = ({handleModal, modalOpen, onCommentSubmit, onUpdateComment, reviewComment }: Props) => {
-  console.log({reviewComment})
-  const { register, handleSubmit, reset } = useForm({defaultValues: {author: reviewComment?.author, comment: reviewComment?.comment}})
+  const { register, handleSubmit, reset } = useForm()
   
   useEffect(() => {
     reset({author: reviewComment?.author || '', comment: reviewComment?.comment || ''})
-  }, [reset, reviewComment?.author, reviewComment?.comment])
+  }, [reset, reviewComment])
 
 
   const onSubmit = (data: CommentFormDataTypes) => {

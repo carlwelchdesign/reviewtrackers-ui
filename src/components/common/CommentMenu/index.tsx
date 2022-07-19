@@ -3,10 +3,9 @@ import Box from '@mui/material/Box'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import IconButton from '@mui/material/IconButton'
-// import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
-import grey from '@mui/material/colors/grey'
+import { grey } from '@mui/material/colors'
 import styled from 'styled-components'
 
 type Props = {
@@ -19,7 +18,7 @@ const CommentMenu = ({handleCommentMenu}: Props) => {
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setCurrentMenuItem(event.currentTarget)
   }
-  
+
   const handleSelect = (event: React.MouseEvent<HTMLElement>) => {
     handleCommentMenu(event.currentTarget.outerText)
   }

@@ -11,7 +11,6 @@ const ReviewList = () => {
     const fetchAndSetReviews = async () => {
       const data = await fetchAllReviews();
       setReviewList(data);
-      //  setLoading(false);
     }
     fetchAndSetReviews();
    }, []);
@@ -23,4 +22,7 @@ const ReviewList = () => {
 
 export default ReviewList
 
-const ListContainer = styled.div``
+const ListContainer = styled.div`
+  margin: 0 auto;
+  width: 96%;
+`

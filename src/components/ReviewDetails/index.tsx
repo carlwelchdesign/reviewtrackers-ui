@@ -5,7 +5,7 @@ import StarRating from '../common/StarRating'
 import day from 'dayjs'
 import { deleteReviewComment, fetchOneReview, fetchReviewComment, postReviewComment, updateReviewComment } from '../common/api'
 import { Link, useParams } from 'react-router-dom'
-import grey from '@mui/material/colors/grey'
+import { grey } from '@mui/material/colors'
 import styled from 'styled-components'
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import ContentModal from '../common/CommentModal'
