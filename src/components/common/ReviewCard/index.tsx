@@ -25,8 +25,8 @@ const ReviewCard = ({review}: Props) => {
           {content}
         </UserReviewContent>
         <AuthorAndDateSubCantainer>
-          <Typography sx={{ fontSize: 12, textAlign: 'left', width: '50%'}} color="text.primary">{author} </Typography>
-          <Typography sx={{ fontSize: 12, textAlign: 'right', width: '50%', color: grey[500] }} >{day(published_at).format('DD/MM/YYYY')}</Typography>
+          <Typography sx={{ fontSize: 10, textAlign: 'left', width: '50%'}} color="text.primary">{author} </Typography>
+          <Typography sx={{ fontSize: 10, textAlign: 'right', width: '50%', color: grey[500] }} >{day(published_at).format('DD/MM/YYYY')}</Typography>
         </AuthorAndDateSubCantainer>
         </LinkWrapper>
     </CardContainer>

@@ -29,4 +29,5 @@ const ContentContainer = styled.div`
   background-color: #7a8292;
   height: 100%;
   min-height: 100vh;
+  margin: 0 auto;
 `

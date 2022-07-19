@@ -9,10 +9,6 @@ import { UserReviewContent } from '../StyledComponents'
 import grey from '@mui/material/colors/grey'
 import styled from 'styled-components'
 
-// type Props = {
-//   review: ReviewDataType
-// }
-
 const ReviewDetails = () => {
   const { id } = useParams()
   const [reviewDetail, setReviewDetail] = useState<ReviewDataType>()
@@ -30,16 +26,16 @@ const ReviewDetails = () => {
 
   return (
     <CardContainer>
-      <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+      <Typography variant={'h6'} sx={{ fontSize: 16, fontWeight: 600 }} color="text.primary">
         {reviewDetail?.place}
       </Typography>
       <StarRating {...{ rating: reviewDetail?.rating || 0 }} />
-      <UserReviewContent sx={{ fontSize: 13 }} >
+      <UserReviewContent sx={{ fontSize: 14}} color="text.secondary">
         {reviewDetail?.content}
       </UserReviewContent>
       <AuthorAndDateSubCantainer>
-          <Typography sx={{ fontSize: 12, textAlign: 'left', marginRight: '40px' }} color="text.primary">{reviewDetail?.author} </Typography>
-          <Typography sx={{ fontSize: 12, textAlign: 'right', color: grey[500] }} >{day(reviewDetail?.published_at).format('DD/MM/YYYY')}</Typography>
+          <Typography sx={{ fontSize: 10, textAlign: 'left', marginRight: '40px' }} color="text.primary">{reviewDetail?.author} </Typography>
+          <Typography sx={{ fontSize: 10, textAlign: 'right', color: grey[500] }} >{day(reviewDetail?.published_at).format('DD/MM/YYYY')}</Typography>
         </AuthorAndDateSubCantainer>
     </CardContainer>
   )
@@ -52,7 +48,7 @@ const CardContainer = styled(Card)`
   display: inline-block;
   height: 160px;
   margin: 32px 48px;
-  padding: 13px;
+  padding: 13px 80px;
   position: relative;
 `
 
