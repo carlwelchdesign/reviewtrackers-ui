@@ -12,7 +12,7 @@ const StarRating = ({rating}: Props) => {
 	return (
 		<>
 			{[...Array(starAmount)].map((star: any, index: number) =>        
-				<StarRateIcon key={index} sx={{ color: rating >= index ? yellow[700] : grey[300]}} />
+				<StarRateIcon key={index} sx={{ fontSize: 'medium', color: rating >= index ? yellow[700] : grey[300]}} />
 			)}
 		</>
 	)

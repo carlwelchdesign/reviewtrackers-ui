@@ -1,11 +1,12 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import Typography from '@mui/material/Typography';
-import { ReviewDataType } from '../types/ReviewDataTypes';
-import styled from 'styled-components';
-import StarRating from '../StarRating';
+import * as React from 'react'
+import { ReviewDataType } from '../types/ReviewDataTypes'
+import styled from 'styled-components'
+import StarRating from '../StarRating'
 import day from 'dayjs'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+import { Card, Typography } from '@mui/material'
+import { grey } from '@mui/material/colors'
+import { UserReviewContent, AuthorAndDateSubCantainer } from '../StyledComponents'
 
 type Props = {
   review: ReviewDataType
@@ -15,47 +16,36 @@ const ReviewCard = ({review}: Props) => {
   const { id, place, rating, content, author, published_at } = review
   return (
     <CardContainer>
-      <Link to={`/details/${id}`}>
-        <Typography variant={'h6'}>
+      <LinkWrapper to={`/details/${id}`}>
+        <Typography variant={'h6'} sx={{ fontSize: 16, fontWeight: 600 }} color="text.primary">
           {place}
         </Typography>
         <StarRating {...{ rating: rating }} />
-        <UserReviewContent>
+        <UserReviewContent sx={{ fontSize: 14}} color="text.secondary">
           {content}
         </UserReviewContent>
         <AuthorAndDateSubCantainer>
-          <UsernameAndDateContainer sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>{author} {day(published_at).format('DD/MM/YYYY')}</UsernameAndDateContainer>
+          <Typography sx={{ fontSize: 12, textAlign: 'left', width: '50%'}} color="text.primary">{author} </Typography>
+          <Typography sx={{ fontSize: 12, textAlign: 'right', width: '50%', color: grey[500] }} >{day(published_at).format('DD/MM/YYYY')}</Typography>
         </AuthorAndDateSubCantainer>
-        </Link>
+        </LinkWrapper>
     </CardContainer>
   )
 }
 
 export default ReviewCard
 
-const CardContainer = styled(Card)`
+export const CardContainer = styled(Card)`
   border: 1px; 
   width: 192px;
-  display: inline-block;
+  display: inline-flex;
   max-width: 192px;
   height: 160px;
   margin: 32px 48px;
   padding: 13px;
 `
-const UserReviewContent = styled(Typography)`
-  padding-top: 7px;
-  white-space: wrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-`
-const UsernameAndDateContainer = styled(Typography)`
-  display: relative;
-  height: 100%;
-`
-const AuthorAndDateSubCantainer = styled.div`
-  display: absolute;
-  bottom: 0px;
+
+const LinkWrapper = styled(Link)`
+  position: relative;
+  text-decoration: none;
 `

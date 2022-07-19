@@ -1,31 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import Card from '@mui/material/Card';
-import Typography from '@mui/material/Typography';
-import { ReviewDataType } from '../types/ReviewDataTypes';
-import styled from 'styled-components';
-import StarRating from '../StarRating';
+import React, { useState, useEffect } from 'react'
+import { Card, Typography } from '@mui/material'
+import { ReviewDataType } from '../types/ReviewDataTypes'
+import StarRating from '../StarRating'
 import day from 'dayjs'
-import { fetchOneReview } from '../api';
-import { useParams } from 'react-router-dom';
+import { fetchOneReview } from '../api'
+import { useParams } from 'react-router-dom'
+import { UserReviewContent } from '../StyledComponents'
+import grey from '@mui/material/colors/grey'
+import styled from 'styled-components'
 
 // type Props = {
 //   review: ReviewDataType
 // }
 
 const ReviewDetails = () => {
-  const { id } = useParams();
+  const { id } = useParams()
   const [reviewDetail, setReviewDetail] = useState<ReviewDataType>()
 
   useEffect(() => {
     if (id) {
-    const fetchAndSetReviews = async () => {
-      const data = await fetchOneReview(id);
-      setReviewDetail(data);
-      //  setLoading(false);
+      const fetchAndSetReviews = async () => {
+        const data = await fetchOneReview(id)
+        setReviewDetail(data)
+        //  setLoading(false)
+      }
+    fetchAndSetReviews()
     }
-    fetchAndSetReviews();
-    }
-   }, [id]);
+   }, [id])
 
   return (
     <CardContainer>
@@ -36,9 +37,10 @@ const ReviewDetails = () => {
       <UserReviewContent sx={{ fontSize: 13 }} >
         {reviewDetail?.content}
       </UserReviewContent>
-      <UsernameAndDate sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
-        {reviewDetail?.author} {day(reviewDetail?.published_at).format('DD/MM/YYYY')}
-      </UsernameAndDate>
+      <AuthorAndDateSubCantainer>
+          <Typography sx={{ fontSize: 12, textAlign: 'left', marginRight: '40px' }} color="text.primary">{reviewDetail?.author} </Typography>
+          <Typography sx={{ fontSize: 12, textAlign: 'right', color: grey[500] }} >{day(reviewDetail?.published_at).format('DD/MM/YYYY')}</Typography>
+        </AuthorAndDateSubCantainer>
     </CardContainer>
   )
 }
@@ -51,16 +53,12 @@ const CardContainer = styled(Card)`
   height: 160px;
   margin: 32px 48px;
   padding: 13px;
+  position: relative;
 `
-const UserReviewContent = styled(Typography)`
-  padding-top: 7px;
-  white-space: wrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-`
-const UsernameAndDate = styled(Typography)`
 
+const AuthorAndDateSubCantainer = styled.div`
+  width: 100%;
+  display: inline-flex;
+  position: absolute;
+  bottom: 13px;
 `

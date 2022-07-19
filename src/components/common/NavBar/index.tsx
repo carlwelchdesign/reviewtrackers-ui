@@ -5,8 +5,8 @@ import styled from 'styled-components'
 const NavBar = () => {
   return (
     <Header>
-      <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        Reviewtrackers
+      <Typography variant={'h6'} sx={{ fontSize: 18,  fontWeight: 600 }} color="text.white" gutterBottom>
+        Reviews
       </Typography>
     </Header>
   )
