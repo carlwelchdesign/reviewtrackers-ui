@@ -16,9 +16,12 @@ const ReviewList = () => {
    }, []);
 
   return (
-    <ListContainer>
-      {reviewList.map((review: ReviewDataType) => <ReviewCard key={review.id} {...{review}} />)}
-    </ListContainer>
+    <React.Suspense fallback="loading...">
+      <ListContainer>
+        {reviewList.map((review: ReviewDataType) => <ReviewCard key={review.id} {...{review}} />)}
+      </ListContainer>
+    </React.Suspense>
+
   )
 }
 

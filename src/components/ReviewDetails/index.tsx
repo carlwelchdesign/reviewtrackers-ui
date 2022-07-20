@@ -60,14 +60,15 @@ const ReviewDetails = () => {
   }
 
   return (
-    <>
+    <React.Suspense fallback="loading...">
       <LinkWrapper to={`/`}>
         <ArrowBackIosIcon sx={{ fontSize: 16, color: 'white'}} />
       </LinkWrapper>
       {reviewDetail && <DetailCard {...{reviewDetail, showCommentButton: !reviewComment, handleModal}}/>}
       {reviewComment && <CommentCard {...{...reviewComment, handeleCommentDelete, handleModal }}/>}
       {id && <ContentModal {...{ handleModal, modalOpen, onCommentSubmit, onUpdateComment, reviewComment }}/>}
-    </>
+    </React.Suspense>
+
   )
 }
 
