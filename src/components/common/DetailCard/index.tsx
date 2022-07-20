@@ -17,18 +17,19 @@ interface Props {
 type DetailProps = CommentFormDataTypes & Props
 
 const DetailCard = ({reviewDetail, showCommentButton, handleModal }: DetailProps) => {
+  const {place, rating, content, author, published_at } = reviewDetail
   return (
     <ReviewCardDetailContainer>
       <Typography variant={'h6'} sx={{ fontSize: 16, fontWeight: 600 }} color="text.primary">
-        {reviewDetail?.place}
+        {place}
       </Typography>
-      <StarRating {...{ rating: reviewDetail?.rating || 0 }} />
+      <StarRating {...{ rating: rating || 0 }} />
       <UserReviewContent sx={{ fontSize: 13}} color="text.secondary">
-        {reviewDetail?.content}
+        {content}
       </UserReviewContent>
       <AuthorDateContainer>
-        <Typography sx={{ fontSize: 10, textAlign: 'left', marginRight: '40px' }} color="text.primary">{reviewDetail?.author}</Typography>
-        <Typography sx={{ fontSize: 10, textAlign: 'right', color: grey[500] }}>{day(reviewDetail?.published_at).format('DD/MM/YYYY')}</Typography>
+        <Typography sx={{ fontSize: 10, textAlign: 'left', marginRight: '40px' }} color="text.primary">{author}</Typography>
+        <Typography sx={{ fontSize: 10, textAlign: 'right', color: grey[500] }}>{day(published_at).format('DD/MM/YYYY')}</Typography>
       </AuthorDateContainer>
       {showCommentButton && <AddCommentButton color="primary" aria-label="Add Comment" onClick={handleModal}>
         <InsertCommentIcon sx={{ fontSize: 16, color: grey[800]}}/>
