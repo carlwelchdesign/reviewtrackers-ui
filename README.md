@@ -14,3 +14,7 @@ You will also see any lint errors in the console.
 ### `yarn test`
 
 Launches the test runner in the interactive watch mode.\
+
+## This app requires the ReviewTracker Server is running in the back ground
+Clone here: [reviewtrackers-server](https://github.com/carlwelchdesign/reviewtrackers-server) 
+
