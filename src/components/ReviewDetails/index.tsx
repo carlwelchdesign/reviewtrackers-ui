@@ -10,6 +10,7 @@ import DetailCard from '../common/DetailCard'
 
 const ReviewDetails = () => {
   const { id } = useParams()
+
   const [reviewDetail, setReviewDetail] = useState<ReviewDataType>()
   const [reviewComment, setReviewComment] = useState<CommentFormDataTypes | undefined>()
   const [modalOpen, setModalOpen] = useState<boolean>(false)
@@ -71,6 +72,7 @@ const ReviewDetails = () => {
 }
 
 export default ReviewDetails
+
 
 const LinkWrapper = styled(Link)`
   position: absolute;

@@ -21,6 +21,6 @@ describe('ReviewDetails', () => {
     const route = `/details/${mockId}`;
     history.push(route);
     render(<ReviewDetails />, {wrapper: BrowserRouter})
-    expect(screen.getByText('19/07/2022')).toBeInTheDocument()
+    expect(screen.getByTestId(/ArrowBackIosIcon/i)).toBeInTheDocument()
   });
 })

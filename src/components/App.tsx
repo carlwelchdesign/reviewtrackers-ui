@@ -13,8 +13,8 @@ return (
     <ContentContainer>
       <NavBar />
       <Routes>
-        <Route path="/" element={<ReviewList />} />
-        <Route path="/details/:id" element={<ReviewDetails />} />
+        <Route path="/" element={<ReviewList />}></Route>
+        <Route path="/details/:id" element={<ReviewDetails />}></Route>
       </Routes>
     </ContentContainer>
   )
