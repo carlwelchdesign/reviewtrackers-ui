@@ -1,8 +1,10 @@
 # ReviewTrackers UI
 ## Available Scripts
 
-In the project directory, you can run:
+Project setup:
+### `yarn install`
 
+In the project directory, you can run:
 ### `yarn start`
 
 Runs the app in the development mode.\
