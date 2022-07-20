@@ -68,8 +68,6 @@ const ReviewDetails = () => {
     }
   }
 
-  
-
   const handleModal = () => {
     setModalOpen(!modalOpen)
   }
