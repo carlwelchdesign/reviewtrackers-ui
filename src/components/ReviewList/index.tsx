@@ -16,7 +16,9 @@ const ReviewList = () => {
    }, []);
 
   return (
-    <ListContainer>{reviewList.map((review: ReviewDataType) => <ReviewCard key={review.id} {...{review}} />)}</ListContainer>
+    <ListContainer>
+      {reviewList.map((review: ReviewDataType) => <ReviewCard key={review.id} {...{review}} />)}
+    </ListContainer>
   )
 }
 
