@@ -52,14 +52,6 @@ const ReviewDetails = () => {
     handleModal()
   }
 
-  const handeleCommentSubmit = () => {
-    handleModal()
-  }
-
-  const handeleCommentUpdate = () => {
-    handleModal()
-  }
-
   const onUpdateComment = async (data: CommentFormDataTypes) => {
     if(reviewComment) {
       await updateReviewComment({...{...data, review_id: id, id: reviewComment.id}})
@@ -89,11 +81,11 @@ const ReviewDetails = () => {
           <Typography sx={{ fontSize: 10, textAlign: 'left', marginRight: '40px' }} color="text.primary">{reviewDetail?.author}</Typography>
           <Typography sx={{ fontSize: 10, textAlign: 'right', color: grey[500] }}>{day(reviewDetail?.published_at).format('DD/MM/YYYY')}</Typography>
         </AuthorDateContainer>
-        {!reviewComment && <AddCommentButton color="primary" aria-label="Add Comment" onClick={handeleCommentSubmit}>
+        {!reviewComment && <AddCommentButton color="primary" aria-label="Add Comment" onClick={handleModal}>
           <InsertCommentIcon sx={{ fontSize: 16, color: grey[800]}}/>
         </AddCommentButton>}
       </ReviewCardDetailContainer>
-     {reviewComment && <CommentCard {...{...reviewComment, handeleCommentDelete, handeleCommentUpdate }}/>}
+     {reviewComment && <CommentCard {...{...reviewComment, handeleCommentDelete, handleModal }}/>}
       {id && <ContentModal {...{ handleModal, modalOpen, onCommentSubmit, onUpdateComment, reviewComment }}/>}
     </>
   )

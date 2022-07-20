@@ -9,12 +9,12 @@ import { blue, grey } from '@mui/material/colors'
 
 interface Props {
   handeleCommentDelete: any
-  handeleCommentUpdate: any
+  handleModal: () => void
 }
 
 type CardProps = CommentFormDataTypes & Props
 
-const CommentCard = ({ comment, author, updatedAt, id, handeleCommentDelete, handeleCommentUpdate }: CardProps) => {
+const CommentCard = ({ comment, author, updatedAt, id, handeleCommentDelete, handleModal }: CardProps) => {
 
   const handleCommentMenu = (selection: string) => {
     if (id){
@@ -23,7 +23,7 @@ const CommentCard = ({ comment, author, updatedAt, id, handeleCommentDelete, han
           handeleCommentDelete(id)
           break
         case 'Update':
-          handeleCommentUpdate()
+          handleModal()
           break
       }
     }
