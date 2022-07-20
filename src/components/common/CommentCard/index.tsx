@@ -29,7 +29,6 @@ const CommentCard = ({ comment, author, updatedAt, id, handeleCommentDelete, han
     }
   }
 
-  
   return (
     <CommentCardContainer>
       <ReplyIconStyled sx={{ fontSize: 16, color: blue[800]}} />
@@ -43,7 +42,6 @@ const CommentCard = ({ comment, author, updatedAt, id, handeleCommentDelete, han
       </AuthorDateContainer>
     </CommentCardContainer>
   )
-
 }
 
 export default CommentCard
