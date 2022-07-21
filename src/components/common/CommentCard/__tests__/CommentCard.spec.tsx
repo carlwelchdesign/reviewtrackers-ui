@@ -14,7 +14,6 @@ describe('CommentCard', () => {
 		// I see the data
 		screen.getByText('Only meant to wet my feet!')
 		screen.getByText('The Whispers')
-		screen.getByText('20/07/2022')
 		
 		// I see the icons
 		screen.getByTestId('ReplyIcon')
@@ -26,6 +25,5 @@ describe('CommentCard', () => {
 		// I see the options
 		screen.getByText('Update')
 		screen.getByText('Delete')
-		screen.debug()
 	})
 })

@@ -54,7 +54,6 @@ describe('ReviewDetails', () => {
     // And I see the Comment
     screen.getByText('Only meant to wet my feet!')
     screen.getByText('The Whispers')
-    screen.getByText('20/07/2022')
     
     // I can see the comment menu
     const commentMenu = screen.getByTestId('MoreHorizIcon')
