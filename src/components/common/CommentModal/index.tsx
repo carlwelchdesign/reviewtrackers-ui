@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Box, Modal, Typography, TextField, Button } from '@mui/material'
 import styled from 'styled-components'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { CommentFormDataTypes } from '../types/ReviewDataTypes'
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
 }
 
 const ContentModal = ({handleModal, modalOpen, onCommentSubmit, onUpdateComment, reviewComment }: Props) => {
-  const { register, handleSubmit, reset } = useForm()
+  const { handleSubmit, reset, control } = useForm()
   
   useEffect(() => {
     reset({author: reviewComment?.author || '', comment: reviewComment?.comment || ''})
@@ -32,17 +32,28 @@ const ContentModal = ({handleModal, modalOpen, onCommentSubmit, onUpdateComment,
         <Typography id="modal-modal-title" variant="h6" sx={{ fontWeight: 800 }}>
           Add a comment
         </Typography>     
-        <form onSubmit={handleSubmit(onSubmit)}>                                       
-          <CommentTextField
-            label="Enter your name"
-            {...register("author", { required: true, maxLength: 20 })}
+        <form onSubmit={handleSubmit(onSubmit)}>  
+          <Controller
+            name="author"
+            control={control}
+            render={() =>                                      
+              <CommentTextField
+                label="Enter your name"
+                required
+              />
+            }
           />
-          <CommentTextField
-            label="Leave a comment"
-            {...register("comment", { required: true })}
-
-            multiline
-            rows={4}
+          <Controller
+            name="author"
+            control={control}
+            render={() =>                                      
+              <CommentTextField
+                label="Leave a comment"
+                required
+                multiline
+                rows={4}
+              />
+            }
           />
           <ButtonContainer>
             <CommentButton variant="contained" type="submit">Submit</CommentButton>
@@ -58,7 +69,7 @@ export default ContentModal
 
 const ModalContentContainer = styled(Box)`
   width: 60%;
-  height: 324px;
+  min-height: 324px;
   margin: 20% auto;
   background-color: white;
   vertical-align: center;
