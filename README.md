@@ -1,4 +1,11 @@
 # ReviewTrackers UI
+
+Prerequisites:
+
+```
+nvm use 14.17.0
+```
+
 ## Available Scripts
 
 Project setup:
