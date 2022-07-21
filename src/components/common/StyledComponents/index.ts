@@ -5,6 +5,7 @@ export const ContentContainer = styled.div`
   background-color: #7a8292;
   height: 100%;
   min-height: 100vh;
+  padding-bottom: 80px;
 `
 
 export const CardContainer = styled(Card)`
