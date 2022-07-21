@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Box, Modal, Typography, TextField, Button } from '@mui/material'
 import styled from 'styled-components'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { CommentFormDataTypes } from '../types/ReviewDataTypes'
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
 }
 
 const ContentModal = ({handleModal, modalOpen, onCommentSubmit, onUpdateComment, reviewComment }: Props) => {
-  const { handleSubmit, reset, control } = useForm()
+  const { handleSubmit, reset, register } = useForm()
   
   useEffect(() => {
     reset({author: reviewComment?.author || '', comment: reviewComment?.comment || ''})
@@ -33,27 +33,17 @@ const ContentModal = ({handleModal, modalOpen, onCommentSubmit, onUpdateComment,
           Add a comment
         </Typography>     
         <form onSubmit={handleSubmit(onSubmit)}>  
-          <Controller
-            name="author"
-            control={control}
-            render={() =>                                      
-              <CommentTextField
-                label="Enter your name"
-                required
-              />
-            }
+          <CommentTextField
+            label="Enter your name"
+            required
+            {...register("author")}
           />
-          <Controller
-            name="author"
-            control={control}
-            render={() =>                                      
-              <CommentTextField
-                label="Leave a comment"
-                required
-                multiline
-                rows={4}
-              />
-            }
+          <CommentTextField
+            label="Leave a comment"
+            required
+            multiline
+            rows={4}
+            {...register("comment")}
           />
           <ButtonContainer>
             <CommentButton variant="contained" type="submit">Submit</CommentButton>
