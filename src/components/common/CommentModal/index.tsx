@@ -25,7 +25,7 @@ const ContentModal = ({handleModal, modalOpen, onCommentSubmit, onUpdateComment,
   }
 
   return (
-    <Modal
+    <Modal data-testid="comment-modal"
       open={modalOpen}
       onClose={handleModal}>
       <ModalContentContainer>

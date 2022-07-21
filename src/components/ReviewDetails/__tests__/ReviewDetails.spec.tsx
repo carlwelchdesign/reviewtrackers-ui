@@ -2,7 +2,7 @@ import React from 'react'
 import { render, screen, act } from '@testing-library/react'
 import ReviewDetails from '../index'
 import Router from "react-router-dom";
-
+import UserEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import { mockReviewData, mockReviewCommentData } from '../../common/__mocks__/mockReviews'
 
@@ -55,6 +55,16 @@ describe('ReviewDetails', () => {
     screen.getByText('Only meant to wet my feet!')
     screen.getByText('The Whispers')
     screen.getByText('20/07/2022')
+    
+    // I can see the comment menu
+    const commentMenu = screen.getByTestId('MoreHorizIcon')
+    UserEvent.click(commentMenu)
+    const updateOption = screen.getByText('Update')
+		// const deleteOption = screen.getByText('Delete')
+
+    // And I click Update
+    UserEvent.click(updateOption)
+    UserEvent.click(screen.getByText('Update'))
   });
 })
 
