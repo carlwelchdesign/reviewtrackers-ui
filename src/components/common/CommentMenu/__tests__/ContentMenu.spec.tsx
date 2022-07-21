@@ -9,8 +9,8 @@ describe('CommentMenu', () => {
 	it('Renders CommentMenu', async () => {
 		render(<CommentMenu {...{ handleCommentMenu: mockHandleCommentMenu }} />)
 		const menuButton = screen.getByTestId(/MoreHorizIcon/i)
-    UserEvent.click(menuButton)
-    screen.getByText('Update')
-    screen.getByText('Delete')
+		UserEvent.click(menuButton)
+		screen.getByText('Update')
+		screen.getByText('Delete')
 	})
 })
