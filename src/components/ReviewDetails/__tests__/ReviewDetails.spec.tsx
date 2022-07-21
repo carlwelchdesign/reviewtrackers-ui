@@ -1,80 +1,53 @@
 import React from 'react'
 import { render, screen, act } from '@testing-library/react'
 import ReviewDetails from '../index'
-import { BrowserRouter } from 'react-router-dom'
+import Router from "react-router-dom";
+
+import { MemoryRouter } from 'react-router-dom'
 import { mockReviewData, mockReviewCommentData } from '../../common/__mocks__/mockReviews'
-import fetchMock from 'fetch-mock'
 
 const mockId = '5d707203015653f16822ac2f'
 const mockDetailData = mockReviewData[9]
 
-fetchMock.get(`http://localhost:8080/reviews/${mockId}`, {
-  headers: {
-		['Content-Type']: 'application/json'
-  },
-  response: {
-		status: 200,
-		body: {...mockDetailData}
-	}
-})
-
-fetchMock.get(`http://localhost:8080/review/comment/${mockId}`, {
-  response: {
-		status: 200,
-		body: {...mockReviewCommentData}
-	}
-})
-
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useParams: jest.fn(),
+}));
 
 const setup = async () => {
-	render(<ReviewDetails />, {wrapper: BrowserRouter})
+  render(
+    <MemoryRouter initialEntries={[`/details/${mockId}`]}>
+      <ReviewDetails />
+    </MemoryRouter>
+  )
 }
-
 
 describe('ReviewDetails', () => {
   it('should render the component', async () => {
-
-    jest.mock('react-router-dom', () => ({
-      ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
-      useParams: () => ({
-        id: mockId
-      }),
-      useRouteMatch: () => ({ url: `/details/${mockId}` }),
-    }));
-
-    const setReviewDetailMock = jest.fn()
-		const reviewDetailMock: any = (useState :any) => [useState, setReviewDetailMock];
-		jest.spyOn(React, 'useState').mockImplementation(reviewDetailMock)
- 
-    const setReviewCommentMock = jest.fn()
-		const reviewCommentMock: any = (useState :any) => [useState, setReviewCommentMock];
-    jest.spyOn(React, 'useState').mockImplementation(reviewCommentMock)
-		
-    // @ts-ignore
-    jest.spyOn(window, "fetch").mockImplementation(() => {
-      const fetchResponse = {
-        json: () => Promise.resolve({...mockDetailData}),
-      };
-      return Promise.resolve(fetchResponse);
-    });
+      jest.spyOn(Router, 'useParams').mockReturnValue({ id: mockId })
 
     // @ts-ignore
-    jest.spyOn(window, "fetch").mockImplementation(() => {
+    jest.spyOn(window, 'fetch').mockImplementation(() => {
       const fetchResponse = {
         json: () => Promise.resolve({...mockReviewCommentData}),
       };
       return Promise.resolve(fetchResponse);
     });
 
-		await act( async () => setup());
+    // @ts-ignore
+    jest.spyOn(window, 'fetch').mockImplementation(() => {
+      const fetchResponse = {
+        json: () => Promise.resolve({ ...mockDetailData}),
+      };
+      return Promise.resolve(fetchResponse);
+    });
 
-    fetchMock.done()
-    fetchMock.lastCall()
-    screen.debug()
-    // await waitForElementToBeRemoved(()=> {
-    //   expect(screen.findAllByText(/loading.../i)).toBeTruthy()
-    // })
-
+    await act( async () => setup())
+      screen.getByText(/Big Johns Burgers/i)
+      screen.getByText(/Cillum ad commodo duis eu. In adipisicing irure nisi veniam adipisicing consequat eu amet ut ex cupidatat excepteur pariatur. Ex consectetur culpa non sit. Do esse incididunt non irure. Id cillum sit do nostrud consectetur id in minim cillum. Lorem proident sit consequat labore irure culpa ea tempor labore./i)
+      screen.getByText('18/02/2016')
+      screen.getAllByText(/Gillespie Lester/i)
+      screen.getByText('20/07/2022')
   });
 })
 
