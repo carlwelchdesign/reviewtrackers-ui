@@ -27,6 +27,7 @@ Run test suite:
 ```
 yarn test
 ```
+Launches the test runner in the interactive watch mode.
 
 with test coverage:
 
@@ -34,7 +35,6 @@ with test coverage:
 yarn test:coverage
 ```
 
-Launches the test runner in the interactive watch mode.
 
 This app requires the ReviewTracker Server running in the background:
 Clone here: [reviewtrackers-server](https://github.com/carlwelchdesign/reviewtrackers-server) 
