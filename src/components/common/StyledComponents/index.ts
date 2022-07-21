@@ -1,6 +1,12 @@
 import { Card, Typography } from "@mui/material"
 import styled from "styled-components"
 
+export const ContentContainer = styled.div`
+background-color: #7a8292;
+  height: 100%;
+  min-height: 100vh;
+`
+
 export const CardContainer = styled(Card)`
   border: 1px; 
   width: 192px;
@@ -35,5 +41,5 @@ export const AuthorDateContainer = styled.div`
   bottom: 12px;
 `
 export const UserReviewContent = styled(Typography)`
-  padding: 7px 0 30px; 
+  padding: 7px 0 30px;  
 `
