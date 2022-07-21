@@ -24,6 +24,5 @@ describe('ReviewList', () => {
 		screen.queryByText(/Ipsum mollit anim pariatur eu qui velit Lorem ea enim excepteur ut fugiat fugiat esse. Incididunt consectetur deserunt pariatur magna sit dolore voluptate. Minim cupidatat fugiat magna quis consectetur esse id esse adipisicing anim velit. Cillum mollit et nisi ex occaecat labore enim nulla cupidatat. Occaecat Lorem officia est sit enim amet commodo sunt occaecat reprehenderit Lorem culpa. Aute anim ullamco voluptate incididunt incididunt excepteur in irure./i)
 		screen.queryByText(/Weeks Duran/i)
 		screen.queryByText('27/06/1974')
-		screen.debug()
 	})
 })
