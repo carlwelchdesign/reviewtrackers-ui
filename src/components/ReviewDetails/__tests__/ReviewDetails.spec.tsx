@@ -1,20 +1,14 @@
 import React from 'react'
-import { render, screen, waitFor, act } from '@testing-library/react'
+import { render, screen, act } from '@testing-library/react'
 import ReviewDetails from '../index'
 import { BrowserRouter } from 'react-router-dom'
-import { mockReviewData } from '../../common/__mocks__/mockReviews'
-import { createMemoryHistory } from 'history';
+import { mockReviewData, mockReviewCommentData } from '../../common/__mocks__/mockReviews'
 import fetchMock from 'fetch-mock'
 
 const mockId = '5d707203015653f16822ac2f'
 const mockDetailData = mockReviewData[9]
 
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
-  useParams: () => { id : mockId },
-}));
-
-fetchMock.get(`localhost:8080/details/${mockId}`, {
+fetchMock.get(`http://localhost:8080/reviews/${mockId}`, {
   headers: {
 		['Content-Type']: 'application/json'
   },
@@ -24,22 +18,22 @@ fetchMock.get(`localhost:8080/details/${mockId}`, {
 	}
 })
 
+fetchMock.get(`http://localhost:8080/review/comment/${mockId}`, {
+  response: {
+		status: 200,
+		body: {...mockReviewCommentData}
+	}
+})
+
+
 const setup = async () => {
-	render(<ReviewDetails />)
+	render(<ReviewDetails />, {wrapper: BrowserRouter})
 }
+
 
 describe('ReviewDetails', () => {
   it('should render the component', async () => {
-    const history = createMemoryHistory();
-    const route = `/details/${mockId}`;
-    history.push(route);
-    jest.fn((() => {
-      return {
-        data: mockDetailData,
-      };
-    }))
 
-    // @ts-ignore
     jest.mock('react-router-dom', () => ({
       ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
       useParams: () => ({
@@ -48,15 +42,39 @@ describe('ReviewDetails', () => {
       useRouteMatch: () => ({ url: `/details/${mockId}` }),
     }));
 
+    const setReviewDetailMock = jest.fn()
+		const reviewDetailMock: any = (useState :any) => [useState, setReviewDetailMock];
+		jest.spyOn(React, 'useState').mockImplementation(reviewDetailMock)
+ 
+    const setReviewCommentMock = jest.fn()
+		const reviewCommentMock: any = (useState :any) => [useState, setReviewCommentMock];
+    jest.spyOn(React, 'useState').mockImplementation(reviewCommentMock)
+		
+    // @ts-ignore
+    jest.spyOn(window, "fetch").mockImplementation(() => {
+      const fetchResponse = {
+        json: () => Promise.resolve({...mockDetailData}),
+      };
+      return Promise.resolve(fetchResponse);
+    });
+
+    // @ts-ignore
+    jest.spyOn(window, "fetch").mockImplementation(() => {
+      const fetchResponse = {
+        json: () => Promise.resolve({...mockReviewCommentData}),
+      };
+      return Promise.resolve(fetchResponse);
+    });
+
 		await act( async () => setup());
 
     fetchMock.done()
     fetchMock.lastCall()
-    await waitFor(()=> {
-      expect(screen.findAllByText(/Big Johns Burgers/i)).toBeInTheDocument()
-    })
-    // screen.getByText(/Big Johns Burgers/i)
     screen.debug()
+    // await waitForElementToBeRemoved(()=> {
+    //   expect(screen.findAllByText(/loading.../i)).toBeTruthy()
+    // })
+
   });
 })
 

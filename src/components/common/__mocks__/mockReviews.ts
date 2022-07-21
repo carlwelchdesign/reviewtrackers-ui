@@ -2,7 +2,7 @@ import { ReviewDataType, CommentFormDataTypes } from "../types/ReviewDataTypes";
 
 export const mockReviewCommentData: CommentFormDataTypes = {
   id: 23,
-  review_id: '5d7072030bef7a653b0b80a4',
+  review_id: '5d707203015653f16822ac2f',
   author: 'The Whispers',
   comment: 'Only meant to wet my feet!',
 }

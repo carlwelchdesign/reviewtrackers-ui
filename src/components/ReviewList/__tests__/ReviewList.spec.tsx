@@ -22,18 +22,18 @@ const setup = async () => {
 
 describe('ReviewList', () => {
 	it('Renders ReviewList', async () => {
-		
 		const setReviewListMock = jest.fn()
 		const reviewListMock: any = (useState :any) => [useState, setReviewListMock];
 		jest.spyOn(React, 'useState').mockImplementation(reviewListMock)
 		jest.spyOn(React, 'useEffect').mockImplementation((f) => f())
+		
 		// @ts-ignore
 		jest.spyOn(window, "fetch").mockImplementation(() => {
-      const fetchResponse = {
-        json: () => Promise.resolve(mockReviewData),
-      };
-      return Promise.resolve(fetchResponse);
-    });
+			const fetchResponse = {
+				json: () => Promise.resolve(mockReviewData),
+			};
+			return Promise.resolve(fetchResponse);
+		});
 
 		await act( async () => setup());
 
