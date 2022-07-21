@@ -26,7 +26,7 @@ const ReviewList = () => {
           <Grid item xs={2} sm={4} md={4} key={index}>
             <ReviewCard key={review.id} {...{review}} />
           </Grid>
-      )}
+        )}
       </Grid>
     </React.Suspense>
 
