@@ -35,11 +35,12 @@ const ContentModal = ({handleModal, modalOpen, onCommentSubmit, onUpdateComment,
         <form onSubmit={handleSubmit(onSubmit)}>                                       
           <CommentTextField
             label="Enter your name"
-            {...register('author')} 
+            {...register("author", { required: true, maxLength: 20 })}
           />
           <CommentTextField
             label="Leave a comment"
-            {...register('comment')} 
+            {...register("comment", { required: true })}
+
             multiline
             rows={4}
           />
