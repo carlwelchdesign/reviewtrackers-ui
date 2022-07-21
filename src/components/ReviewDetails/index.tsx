@@ -75,7 +75,6 @@ const ReviewDetails = () => {
       {reviewComment && <CommentCard {...{...reviewComment, handeleCommentDelete, handleModal }}/>}
       {id && <ContentModal {...{ handleModal, modalOpen, onCommentSubmit, onUpdateComment, reviewComment }}/>}
     </React.Suspense>
-
   )
 }
 
