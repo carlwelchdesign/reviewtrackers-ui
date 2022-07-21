@@ -2,7 +2,7 @@ import { Card, Typography } from "@mui/material"
 import styled from "styled-components"
 
 export const ContentContainer = styled.div`
-background-color: #7a8292;
+  background-color: #7a8292;
   height: 100%;
   min-height: 100vh;
 `

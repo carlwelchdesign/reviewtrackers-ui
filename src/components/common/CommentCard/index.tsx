@@ -50,7 +50,6 @@ const CommentCardContainer = styled(Card)`
   border: 1px; 
   display: flex;
   min-height: 80px;
-  margin: 32px 48px;
   padding: 13px 80px;
   position: relative;
   flex-direction: column;
