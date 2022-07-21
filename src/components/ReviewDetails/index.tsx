@@ -82,7 +82,6 @@ const ReviewDetails = () => {
 
 export default ReviewDetails
 
-
 const LinkWrapper = styled(Link)`
   position: absolute;
   top: 26px;
