@@ -11,7 +11,7 @@ export const CardContainer = styled(Card)`
   border: 1px; 
   display: inline-flex;
   height: 160px;
-  margin: 32px 48px;
+  margin: auto 0;
   padding: 13px;
 `
 export const UserReviewListContent = styled(Typography)`

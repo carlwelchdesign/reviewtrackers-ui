@@ -44,7 +44,7 @@ const ReviewCardDetailContainer = styled(Card)`
   border: 1px; 
   display: flex;
   min-height: 160px;
-  margin: 32px 48px;
+  margin: 0 0 24px;
   padding: 13px 80px;
   position: relative;
   flex-direction: column;

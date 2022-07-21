@@ -39,7 +39,7 @@ export const CardContainer = styled(Card)`
   border: 1px; 
   display: inline-flex;
   height: 160px;
-  margin: 32px 4%;
+  margin: 0;
   padding: 13px;
 `
 

@@ -22,4 +22,5 @@ const Header = styled.div`
   align-items: center;
   display: flex;
   height: 70px;
+  margin-bottom: 24px;
 `
