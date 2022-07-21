@@ -18,8 +18,12 @@ const ReviewDetails = () => {
   useEffect(() => {
     if (id) {
       const fetchReview = async () => {
-        const data = await fetchOneReview(id)
-        setReviewDetail(data)
+        try {
+          const data = await fetchOneReview(id)
+          setReviewDetail(data)
+        } catch (err) {
+          console.log('error', err);
+        }
       }
     fetchReview()
     }
@@ -28,8 +32,12 @@ const ReviewDetails = () => {
    useEffect(() => {
     if (id) {
       const fetchComment = async () => {
-        const data = await fetchReviewComment(id)
-        setReviewComment(data)
+        try {
+          const data = await fetchReviewComment(id)
+          setReviewComment(data)
+        } catch (err) {
+          console.log('error', err);
+        }
       }
     fetchComment()
     }
