@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
-import { grey } from '@mui/material/colors'
+import { blue, grey } from '@mui/material/colors'
 import styled from 'styled-components'
 
 type Props = {
@@ -30,11 +30,11 @@ const CommentMenu = ({handleCommentMenu}: Props) => {
   return (
     <React.Fragment>
       <MenuBox sx={{ display: 'flex', alignItems: 'center', textAlign: 'center', width: '50'}}>
-        <Tooltip title="Comment Menu">
+        <Tooltip title="Comment Menu" placement="top">
           <IconButton
             onClick={handleClick}
             size="small"
-            sx={{ ml: 2 }}
+            sx={{ ml: 2, color: blue[800]}}
             aria-controls={open ? 'account-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}

@@ -1,9 +1,9 @@
 import React from 'react'
 import { CommentFormDataTypes, ReviewDataType } from '../types/ReviewDataTypes'
-import { Card, IconButton, Typography } from '@mui/material'
+import { Card, IconButton, Tooltip, Typography } from '@mui/material'
 import styled from 'styled-components'
 import day from 'dayjs'
-import { grey } from '@mui/material/colors'
+import { blue, grey } from '@mui/material/colors'
 import StarRating from '../StarRating'
 import { UserReviewContent, AuthorDateContainer } from '../StyledComponents'
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
@@ -32,7 +32,9 @@ const DetailCard = ({reviewDetail, showCommentButton, handleModal }: DetailProps
         <Typography sx={{ fontSize: 10, textAlign: 'right', color: grey[500] }}>{day(published_at).format('DD/MM/YYYY')}</Typography>
       </AuthorDateContainer>
       {showCommentButton && <AddCommentButton color="primary" aria-label="Add Comment" onClick={handleModal}>
-        <InsertCommentIcon sx={{ fontSize: 16, color: grey[800]}}/>
+        <Tooltip placement="top" title="Add Comment">
+          <InsertCommentIcon sx={{ fontSize: 16, color: blue[800]}}/>
+        </Tooltip>
       </AddCommentButton>}
     </ReviewCardDetailContainer>
   )
