@@ -22,14 +22,20 @@ yarn start
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-Run test suite
+Run test suite:
 
 ```
 yarn test
 ```
 
+with test coverage:
+
+```
+yarn test:coverage
+```
+
 Launches the test runner in the interactive watch mode.
 
-### This app requires the ReviewTracker Server running in the background
+This app requires the ReviewTracker Server running in the background:
 Clone here: [reviewtrackers-server](https://github.com/carlwelchdesign/reviewtrackers-server) 
 

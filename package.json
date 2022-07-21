@@ -34,7 +34,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "nyc react-scripts test --coverage --watchAll=false",
+    "test": "nyc react-scripts test",
+    "test:coverage": "nyc react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -67,5 +68,5 @@
   "nyc": {
     "include": "src",
     "exclude": "**/*.spec.js" 
-}
+  }
 }
