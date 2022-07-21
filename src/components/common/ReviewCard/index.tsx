@@ -5,15 +5,16 @@ import StarRating from '../StarRating'
 import day from 'dayjs'
 import { Link } from 'react-router-dom'
 import { Card, Typography } from '@mui/material'
-import { grey } from '@mui/material/colors'
+import { blue, grey } from '@mui/material/colors'
 import { UserReviewListContent, AuthorAndDateSubCantainer } from '../StyledComponents'
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 
 type Props = {
   review: ReviewDataType
 }
 
 const ReviewCard = ({review}: Props) => {
-  const { id, place, rating, content, author, published_at } = review
+  const { id, place, rating, content, author, published_at, comment_id } = review
   return (
     <CardContainer>
       <LinkWrapper to={`/details/${id}`}>
@@ -26,7 +27,8 @@ const ReviewCard = ({review}: Props) => {
         </UserReviewListContent>
         <AuthorAndDateSubCantainer>
           <Typography sx={{ fontSize: 10, textAlign: 'left', width: '50%'}} color="text.primary">{author} </Typography>
-          <Typography sx={{ fontSize: 10, textAlign: 'right', width: '50%', color: grey[500] }} >{day(published_at).format('DD/MM/YYYY')}</Typography>
+          <Typography sx={{ fontSize: 10, textAlign: 'left', width: '50%', color: grey[500] }} >{day(published_at).format('DD/MM/YYYY')}</Typography>
+        {!!comment_id && <QuestionAnswerIcon sx={{ fontSize: 14, textAlign: 'right', color: blue[800]}} />}
         </AuthorAndDateSubCantainer>
       </LinkWrapper>
     </CardContainer>

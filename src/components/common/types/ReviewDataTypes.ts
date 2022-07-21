@@ -5,6 +5,7 @@ export type ReviewDataType = {
 	published_at: string
 	rating: number
 	content: string
+	comment_id?: number
 }
 
 export type CommentFormDataTypes = {
