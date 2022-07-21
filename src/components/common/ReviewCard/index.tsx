@@ -37,9 +37,7 @@ export default ReviewCard
 
 export const CardContainer = styled(Card)`
   border: 1px; 
-  width: 192px;
   display: inline-flex;
-  max-width: 192px;
   height: 160px;
   margin: 32px 4%;
   padding: 13px;

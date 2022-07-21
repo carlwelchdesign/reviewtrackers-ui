@@ -9,9 +9,7 @@ export const ContentContainer = styled.div`
 
 export const CardContainer = styled(Card)`
   border: 1px; 
-  width: 192px;
   display: inline-flex;
-  max-width: 192px;
   height: 160px;
   margin: 32px 48px;
   padding: 13px;

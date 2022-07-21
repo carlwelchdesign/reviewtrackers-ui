@@ -29,7 +29,6 @@ const ReviewList = () => {
         )}
       </Grid>
     </React.Suspense>
-
   )
 }
 
