@@ -24,30 +24,37 @@ const setup = async () => {
 
 describe('ReviewDetails', () => {
   it('should render the component', async () => {
-      jest.spyOn(Router, 'useParams').mockReturnValue({ id: mockId })
+    jest.spyOn(Router, 'useParams').mockReturnValue({ id: mockId })
+    // When I load the Review Details Page
 
     // @ts-ignore
-    jest.spyOn(window, 'fetch').mockImplementation(() => {
-      const fetchResponse = {
-        json: () => Promise.resolve({...mockReviewCommentData}),
-      };
-      return Promise.resolve(fetchResponse);
-    });
-
-    // @ts-ignore
-    jest.spyOn(window, 'fetch').mockImplementation(() => {
+    jest.spyOn(window, 'fetch').mockImplementationOnce(() => {
       const fetchResponse = {
         json: () => Promise.resolve({ ...mockDetailData}),
       };
       return Promise.resolve(fetchResponse);
     });
 
+    // @ts-ignore
+    jest.spyOn(window, 'fetch').mockImplementationOnce(() => {
+      const fetchResponse = {
+        json: () => Promise.resolve({...mockReviewCommentData}),
+      };
+      return Promise.resolve(fetchResponse);
+    });
+
     await act( async () => setup())
-      screen.getByText(/Big Johns Burgers/i)
-      screen.getByText(/Cillum ad commodo duis eu. In adipisicing irure nisi veniam adipisicing consequat eu amet ut ex cupidatat excepteur pariatur. Ex consectetur culpa non sit. Do esse incididunt non irure. Id cillum sit do nostrud consectetur id in minim cillum. Lorem proident sit consequat labore irure culpa ea tempor labore./i)
-      screen.getByText('18/02/2016')
-      screen.getAllByText(/Gillespie Lester/i)
-      screen.getByText('20/07/2022')
+
+    // And I see the Review Details
+    screen.getByText(/Big Johns Burgers/i)
+    screen.getByText(/Cillum ad commodo duis eu. In adipisicing irure nisi veniam adipisicing consequat eu amet ut ex cupidatat excepteur pariatur. Ex consectetur culpa non sit. Do esse incididunt non irure. Id cillum sit do nostrud consectetur id in minim cillum. Lorem proident sit consequat labore irure culpa ea tempor labore./i)
+    screen.getAllByText(/Gillespie Lester/i)
+    screen.getByText('18/02/2016')
+
+    // And I see the Comment
+    screen.getByText('Only meant to wet my feet!')
+    screen.getByText('The Whispers')
+    screen.getByText('20/07/2022')
   });
 })
 
