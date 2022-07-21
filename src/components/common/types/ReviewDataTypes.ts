@@ -8,9 +8,9 @@ export type ReviewDataType = {
 }
 
 export type CommentFormDataTypes = {
-  id?: number
+	id?: number
 	author?: string
 	comment?: string
-  review_id?: string
-  updatedAt?: string
+	review_id?: string
+	updatedAt?: string
 }
