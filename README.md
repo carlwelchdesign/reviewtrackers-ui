@@ -6,6 +6,9 @@
 
 Prerequisites:
 
+This app requires the ReviewTracker Server running in the background:
+Clone here: [reviewtrackers-server](https://github.com/carlwelchdesign/reviewtrackers-server) 
+
 ```
 nvm use 14.17.0
 ```
@@ -39,7 +42,4 @@ with test coverage:
 yarn test:coverage
 ```
 
-
-This app requires the ReviewTracker Server running in the background:
-Clone here: [reviewtrackers-server](https://github.com/carlwelchdesign/reviewtrackers-server) 
 
