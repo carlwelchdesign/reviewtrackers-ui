@@ -14,7 +14,7 @@ type Props = {
 }
 
 const ReviewCard = ({review}: Props) => {
-  const { id, place, rating, content, author, published_at, comment_id } = review
+  const { id, place, rating, content, author, published_at, hasComment } = review
   return (
     <CardContainer>
       <LinkWrapper to={`/details/${id}`}>
@@ -28,7 +28,7 @@ const ReviewCard = ({review}: Props) => {
         <AuthorAndDateSubCantainer>
           <Typography sx={{ fontSize: 10, textAlign: 'left', width: '50%'}} color="text.primary">{author} </Typography>
           <Typography sx={{ fontSize: 10, textAlign: 'left', width: '50%', color: grey[500] }} >{day(published_at).format('DD/MM/YYYY')}</Typography>
-        {!!comment_id && <QuestionAnswerIcon sx={{ fontSize: 14, textAlign: 'right', color: blue[800]}} />}
+        {hasComment && <QuestionAnswerIcon sx={{ fontSize: 14, textAlign: 'right', color: blue[800]}} />}
         </AuthorAndDateSubCantainer>
       </LinkWrapper>
     </CardContainer>

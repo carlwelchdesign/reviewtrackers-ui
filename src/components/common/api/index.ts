@@ -76,8 +76,8 @@ export const updateReviewComment = async (data: CommentFormDataTypes) => {
 	}
 }
 
-export const deleteReviewComment = async (id: string) => {
-	await fetch(apiPath + `review/comment/${id}`, {
+export const deleteReviewComment = async (id: string, reviewId: string) => {
+	await fetch(apiPath + `review/comment/${id}/${reviewId}`, {
 		method: 'DELETE',
 	})
 	try {

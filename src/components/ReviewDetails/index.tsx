@@ -43,15 +43,20 @@ const ReviewDetails = () => {
    }, [id, modalOpen])
 
   const handeleCommentDelete = async (id: string) => {
-    await deleteReviewComment(id)
+    const reviewId = reviewDetail?.id
+    if (reviewId) await deleteReviewComment(id, reviewId)
     setReviewComment(undefined)
   }
 
   const onCommentSubmit = async (data: CommentFormDataTypes) => {
     const formattedData = {...{...data, review_id: id}}
-    await postReviewComment(formattedData)
-    setReviewComment(formattedData)
-    handleModal()
+    try {
+      await postReviewComment(formattedData)
+      setReviewComment(formattedData)
+      handleModal()
+    } catch (err) {
+      console.log('error', err);
+    }
   }
 
   const onUpdateComment = async (data: CommentFormDataTypes) => {
