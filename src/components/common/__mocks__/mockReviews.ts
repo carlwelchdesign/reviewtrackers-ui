@@ -1,4 +1,4 @@
-import { ReviewDataType, CommentFormDataTypes } from "../types/ReviewDataTypes";
+import { ReviewDataType, CommentFormDataTypes } from "../../../constants/types/ReviewDataTypes";
 
 export const mockReviewCommentData: CommentFormDataTypes = {
   id: 23,

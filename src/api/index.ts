@@ -1,5 +1,5 @@
 import { apiPath } from "../constants"
-import { CommentFormDataTypes } from "../types/ReviewDataTypes"
+import { CommentFormDataTypes } from "../constants/types/ReviewDataTypes"
 
 export const fetchAllReviews = async () => {
 	const response = await fetch(apiPath + 'reviews', {

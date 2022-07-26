@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { ReviewDataType } from '../common/types/ReviewDataTypes'
+import { ReviewDataType } from '../../constants/types/ReviewDataTypes'
 import ReviewCard from '../common/ReviewCard'
-import { fetchAllReviews } from '../common/api'
+import { fetchAllReviews } from '../../api'
 import Grid from '@mui/material/Grid';
 
 const ReviewList = () => {

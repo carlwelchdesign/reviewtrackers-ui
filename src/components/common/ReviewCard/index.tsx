@@ -1,5 +1,5 @@
 import React from 'react'
-import { ReviewDataType } from '../types/ReviewDataTypes'
+import { ReviewDataType } from '../../../constants/types/ReviewDataTypes'
 import styled from 'styled-components'
 import StarRating from '../StarRating'
 import day from 'dayjs'

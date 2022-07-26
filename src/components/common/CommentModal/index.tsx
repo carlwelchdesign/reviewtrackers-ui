@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Box, Modal, Typography, TextField, Button } from '@mui/material'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
-import { CommentFormDataTypes } from '../types/ReviewDataTypes'
+import { CommentFormDataTypes } from '../../../constants/types/ReviewDataTypes'
 
 type Props = {
   handleModal: () => void

@@ -1,5 +1,5 @@
 import React from 'react'
-import { CommentFormDataTypes, ReviewDataType } from '../types/ReviewDataTypes'
+import { CommentFormDataTypes, ReviewDataType } from '../../../constants/types/ReviewDataTypes'
 import { Card, IconButton, Tooltip, Typography, Fade } from '@mui/material'
 import styled from 'styled-components'
 import day from 'dayjs'

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense } from 'react'
-import { CommentFormDataTypes, ReviewDataType } from '../common/types/ReviewDataTypes'
-import { deleteReviewComment, fetchOneReview, fetchReviewComment, postReviewComment, updateReviewComment } from '../common/api'
+import { CommentFormDataTypes, ReviewDataType } from '../../constants/types/ReviewDataTypes'
+import { deleteReviewComment, fetchOneReview, fetchReviewComment, postReviewComment, updateReviewComment } from '../../api'
 import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import ContentModal from '../common/CommentModal'
