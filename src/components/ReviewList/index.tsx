@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Suspense } from 'react'
 import { ReviewDataType } from '../common/types/ReviewDataTypes'
 import ReviewCard from '../common/ReviewCard'
 import { fetchAllReviews } from '../common/api'
 import Grid from '@mui/material/Grid';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const ReviewList = () => {
   const [reviewList, setReviewList] = useState<ReviewDataType[]>([])
@@ -16,7 +17,7 @@ const ReviewList = () => {
    }, []);
 
   return (
-    <React.Suspense fallback="loading...">
+    <Suspense fallback={<CircularProgress />}>
       <Grid 
         alignItems="center"
         justifyContent="center" 
@@ -28,7 +29,7 @@ const ReviewList = () => {
           </Grid>
         )}
       </Grid>
-    </React.Suspense>
+    </Suspense>
   )
 }
 

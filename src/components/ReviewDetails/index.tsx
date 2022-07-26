@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import { CommentFormDataTypes, ReviewDataType } from '../common/types/ReviewDataTypes'
 import { deleteReviewComment, fetchOneReview, fetchReviewComment, postReviewComment, updateReviewComment } from '../common/api'
 import { Link, useParams } from 'react-router-dom'
@@ -7,6 +7,7 @@ import ContentModal from '../common/CommentModal'
 import CommentCard from '../common/CommentCard'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import DetailCard from '../common/DetailCard'
+import CircularProgress from '@mui/material/CircularProgress';
 
 const ReviewDetails = () => {
   const { id } = useParams()
@@ -71,15 +72,33 @@ const ReviewDetails = () => {
     setModalOpen(!modalOpen)
   }
 
+  const isLoaded = reviewDetail && reviewComment && id
+
   return (
-    <React.Suspense fallback="loading...">
+    <>
       <LinkWrapper to={`/`}>
         <ArrowBackIosIcon sx={{ fontSize: 16, color: 'white'}} />
       </LinkWrapper>
-      {reviewDetail && <DetailCard {...{reviewDetail, showCommentButton: !reviewComment, handleModal}}/>}
-      {reviewComment && <CommentCard {...{...reviewComment, handeleCommentDelete, handleModal }}/>}
-      {id && <ContentModal {...{ handleModal, modalOpen, onCommentSubmit, onUpdateComment, reviewComment }}/>}
-    </React.Suspense>
+      <Suspense fallback={<CircularProgress />}>
+        {isLoaded && (
+          <>
+            <DetailCard
+              reviewDetail={reviewDetail}
+              showCommentButton={!reviewComment}
+              handleModal={handleModal}
+            />
+            <CommentCard {...{...reviewComment, handeleCommentDelete, handleModal }}/>
+            <ContentModal 
+              handleModal={handleModal}
+              modalOpen={modalOpen}
+              onCommentSubmit={onCommentSubmit}
+              onUpdateComment={onUpdateComment}
+              reviewComment={reviewComment}
+            />
+          </>
+        )}
+      </Suspense>
+    </>
   )
 }
 
