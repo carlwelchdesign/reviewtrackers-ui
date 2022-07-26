@@ -36,7 +36,7 @@ const ReviewDetails = () => {
           const data = await fetchReviewComment(id)
           setReviewComment(data)
         } catch (err) {
-          console.log('error', err);
+          console.log('No Comment');
         }
       }
     fetchComment()

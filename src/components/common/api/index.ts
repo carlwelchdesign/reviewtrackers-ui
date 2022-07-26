@@ -30,7 +30,6 @@ export const fetchReviewComment = async (id: string) => {
 	try {
 		return await response.json()
 	} catch (err) {
-		console.log('error', err)
 	}
 }
 
