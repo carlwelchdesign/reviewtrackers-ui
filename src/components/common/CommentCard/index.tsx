@@ -41,7 +41,7 @@ const CommentCard = ({ comment, author, updatedAt, id, handeleCommentDelete, han
           {comment}
         </UserReviewContent>
         <AuthorDateContainer>
-          <Typography sx={{ fontSize: 10, textAlign: 'left', marginRight: '40px' }} color="text.primary">{author}</Typography>
+          <AuthorText sx={{ fontSize: 10, textAlign: 'left', marginRight: '40px' }} color="text.primary">{author}</AuthorText>
           <Typography sx={{ fontSize: 10, textAlign: 'right', color: grey[500] }}>{day(updatedAt).format('DD/MM/YYYY')}</Typography>
         </AuthorDateContainer>
       </CommentCardContainer>
@@ -58,6 +58,11 @@ const CommentCardContainer = styled(Card)`
   padding: 13px 80px;
   position: relative;
   flex-direction: column;
+`
+export const AuthorText = styled(Typography)`
+  font-size: 10px; 
+  text-align: 'left', 
+  margin-right: '40px'
 `
 export const UserReviewContent = styled(Typography)`
   padding: 7px 0 30px; 
