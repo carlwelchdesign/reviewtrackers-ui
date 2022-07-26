@@ -1,6 +1,13 @@
 # ReviewTrackers UI
 
+<img width="1116" alt="image" src="https://user-images.githubusercontent.com/2073707/180342949-a8fe0528-4724-49dd-a62a-255fa6945aca.png">
+
+<img width="1117" alt="image" src="https://user-images.githubusercontent.com/2073707/180343074-5c2afb4c-cd40-4533-a74c-e45497916a1a.png">
+
 Prerequisites:
+
+This app requires the ReviewTracker Server running in the background:
+Clone here: [reviewtrackers-server](https://github.com/carlwelchdesign/reviewtrackers-server) 
 
 ```
 nvm use 14.17.0
@@ -35,7 +42,4 @@ with test coverage:
 yarn test:coverage
 ```
 
-
-This app requires the ReviewTracker Server running in the background:
-Clone here: [reviewtrackers-server](https://github.com/carlwelchdesign/reviewtrackers-server) 
 
