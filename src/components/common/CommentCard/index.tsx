@@ -1,5 +1,5 @@
 import React from 'react'
-import { CommentFormDataTypes } from '../types/ReviewDataTypes'
+import { CommentFormDataTypes } from '../../../constants/types/ReviewDataTypes'
 import { Card, Typography, Fade } from '@mui/material'
 import styled from 'styled-components'
 import day from 'dayjs'
