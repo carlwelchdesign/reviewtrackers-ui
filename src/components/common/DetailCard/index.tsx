@@ -1,6 +1,6 @@
 import React from 'react'
 import { CommentFormDataTypes, ReviewDataType } from '../types/ReviewDataTypes'
-import { Card, IconButton, Tooltip, Typography } from '@mui/material'
+import { Card, IconButton, Tooltip, Typography, Fade } from '@mui/material'
 import styled from 'styled-components'
 import day from 'dayjs'
 import { blue, grey } from '@mui/material/colors'
@@ -13,30 +13,35 @@ interface Props {
   showCommentButton: boolean
   handleModal: () => void
 }
-  
+
 type DetailProps = CommentFormDataTypes & Props
 
-const DetailCard = ({reviewDetail, showCommentButton, handleModal }: DetailProps) => {
-  const {place, rating, content, author, published_at } = reviewDetail
+const DetailCard = ({ reviewDetail, showCommentButton, handleModal }: DetailProps) => {
+  const { place, rating, content, author, published_at } = reviewDetail
   return (
-    <ReviewCardDetailContainer>
-      <Typography variant={'h6'} sx={{ fontSize: 16, fontWeight: 600 }} color="text.primary">
-        {place}
-      </Typography>
-      <StarRating {...{ rating: rating || 0 }} />
-      <UserReviewContent sx={{ fontSize: 13}} color="text.secondary">
-        {content}
-      </UserReviewContent>
-      <AuthorDateContainer>
-        <Typography sx={{ fontSize: 10, textAlign: 'left', marginRight: '40px' }} color="text.primary">{author}</Typography>
-        <Typography sx={{ fontSize: 10, textAlign: 'right', color: grey[500] }}>{day(published_at).format('DD/MM/YYYY')}</Typography>
-      </AuthorDateContainer>
-      {showCommentButton && <AddCommentButton color="primary" aria-label="Add Comment" onClick={handleModal}>
-        <Tooltip placement="top" title="Add Comment">
-          <InsertCommentIcon sx={{ fontSize: 16, color: blue[800]}}/>
-        </Tooltip>
-      </AddCommentButton>}
-    </ReviewCardDetailContainer>
+    <Fade in={true}
+      style={{ transformOrigin: '0 0 0' }}
+      {...{ timeout: 500 }}
+    >
+      <ReviewCardDetailContainer>
+        <Typography variant={'h6'} sx={{ fontSize: 16, fontWeight: 600 }} color="text.primary">
+          {place}
+        </Typography>
+        <StarRating {...{ rating: rating || 0 }} />
+        <UserReviewContent sx={{ fontSize: 13 }} color="text.secondary">
+          {content}
+        </UserReviewContent>
+        <AuthorDateContainer>
+          <Typography sx={{ fontSize: 10, textAlign: 'left', marginRight: '40px' }} color="text.primary">{author}</Typography>
+          <Typography sx={{ fontSize: 10, textAlign: 'right', color: grey[500] }}>{day(published_at).format('DD/MM/YYYY')}</Typography>
+        </AuthorDateContainer>
+        {showCommentButton && <AddCommentButton color="primary" aria-label="Add Comment" onClick={handleModal}>
+          <Tooltip placement="top" title="Add Comment">
+            <InsertCommentIcon sx={{ fontSize: 16, color: blue[800] }} />
+          </Tooltip>
+        </AddCommentButton>}
+      </ReviewCardDetailContainer>
+    </Fade>
   )
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { CommentFormDataTypes } from '../types/ReviewDataTypes'
-import { Card, Typography } from '@mui/material'
+import { Card, Typography, Fade } from '@mui/material'
 import styled from 'styled-components'
 import day from 'dayjs'
 import CommentMenu from '../CommentMenu'
@@ -17,8 +17,8 @@ type CardProps = CommentFormDataTypes & Props
 const CommentCard = ({ comment, author, updatedAt, id, handeleCommentDelete, handleModal }: CardProps) => {
 
   const handleCommentMenu = (selection: string) => {
-    if (id){
-      switch(selection){
+    if (id) {
+      switch (selection) {
         case 'Delete':
           handeleCommentDelete(id)
           break
@@ -30,17 +30,22 @@ const CommentCard = ({ comment, author, updatedAt, id, handeleCommentDelete, han
   }
 
   return (
-    <CommentCardContainer>
-      <ReplyIconStyled sx={{ fontSize: 16, color: blue[800]}} />
-      <CommentMenu {...{ handleCommentMenu }} />
-      <UserReviewContent sx={{ fontSize: 13}} color="text.secondary">
-        {comment}
-      </UserReviewContent>
-      <AuthorDateContainer>
-        <Typography sx={{ fontSize: 10, textAlign: 'left', marginRight: '40px' }} color="text.primary">{author}</Typography>
-        <Typography sx={{ fontSize: 10, textAlign: 'right', color: grey[500] }}>{day(updatedAt).format('DD/MM/YYYY')}</Typography>
-      </AuthorDateContainer>
-    </CommentCardContainer>
+    <Fade in={true}
+      style={{ transformOrigin: '0 0 0' }}
+      {...{ timeout: 1000 }}
+    >
+      <CommentCardContainer>
+        <ReplyIconStyled sx={{ fontSize: 16, color: blue[800] }} />
+        <CommentMenu {...{ handleCommentMenu }} />
+        <UserReviewContent sx={{ fontSize: 13 }} color="text.secondary">
+          {comment}
+        </UserReviewContent>
+        <AuthorDateContainer>
+          <Typography sx={{ fontSize: 10, textAlign: 'left', marginRight: '40px' }} color="text.primary">{author}</Typography>
+          <Typography sx={{ fontSize: 10, textAlign: 'right', color: grey[500] }}>{day(updatedAt).format('DD/MM/YYYY')}</Typography>
+        </AuthorDateContainer>
+      </CommentCardContainer>
+    </Fade>
   )
 }
 

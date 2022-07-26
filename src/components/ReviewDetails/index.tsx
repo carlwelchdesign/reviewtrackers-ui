@@ -11,7 +11,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 const ReviewDetails = () => {
   const { id } = useParams()
-  const [reviewDetail, setReviewDetail] = useState<ReviewDataType>()
+  const [reviewDetail, setReviewDetail] = useState<ReviewDataType | undefined>()
   const [reviewComment, setReviewComment] = useState<CommentFormDataTypes | undefined>()
   const [modalOpen, setModalOpen] = useState<boolean>(false)
 
@@ -72,31 +72,25 @@ const ReviewDetails = () => {
     setModalOpen(!modalOpen)
   }
 
-  const isLoaded = reviewDetail && reviewComment && id
-
   return (
     <>
       <LinkWrapper to={`/`}>
         <ArrowBackIosIcon sx={{ fontSize: 16, color: 'white'}} />
       </LinkWrapper>
       <Suspense fallback={<CircularProgress />}>
-        {isLoaded && (
-          <>
-            <DetailCard
-              reviewDetail={reviewDetail}
-              showCommentButton={!reviewComment}
-              handleModal={handleModal}
-            />
-            <CommentCard {...{...reviewComment, handeleCommentDelete, handleModal }}/>
-            <ContentModal 
-              handleModal={handleModal}
-              modalOpen={modalOpen}
-              onCommentSubmit={onCommentSubmit}
-              onUpdateComment={onUpdateComment}
-              reviewComment={reviewComment}
-            />
-          </>
-        )}
+        {reviewDetail && <DetailCard
+          reviewDetail={reviewDetail}
+          showCommentButton={!reviewComment}
+          handleModal={handleModal}
+        />}
+        {reviewComment && <CommentCard {...{...reviewComment, handeleCommentDelete, handleModal }}/>}
+        <ContentModal 
+          handleModal={handleModal}
+          modalOpen={modalOpen}
+          onCommentSubmit={onCommentSubmit}
+          onUpdateComment={onUpdateComment}
+          reviewComment={reviewComment}
+        />
       </Suspense>
     </>
   )
